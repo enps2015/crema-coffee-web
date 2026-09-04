@@ -1,0 +1,48 @@
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 56px);
+}
+
+.chapter {
+  padding: clamp(80px, 10vw, 140px) 0;
+  position: relative;
+}
+
+.chapter.light {
+  background: var(--paper);
+  color: var(--ink-dark);
+}
+
+.light,
+.chapter.light {
+  --text-primary: var(--ink-dark);
+  --text-secondary: var(--ink-dark-dim);
+  --text-muted: var(--espresso-3);
+  --text-accent: var(--crema-deep);
+  --text-leaf: var(--leaf-deep);
+  --text-leaf-border: rgba(95, 112, 72, 0.35);
+  --line: var(--line-dark);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  transition-delay: var(--d, 0s);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+.plx-w {
+  overflow: hidden;
+  position: relative;
+}
+
+.plx-w img {
+  height: 118%;
+  will-change: transform;
+}

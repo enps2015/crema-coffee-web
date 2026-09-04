@@ -1,0 +1,70 @@
+# CREMA° — Do Grão ao Neurônio · Atlas Vivo do Café
+
+> O CREMA° é um atlas editorial, científico e interativo sobre café, integrando história socioeconômica, farmacologia molecular, anatomia humana 3D e análise de dados agrícolas em tempo real.
+
+## Autoria & Proveniência
+- **Idealizador e Desenvolvedor:** Eric Pimentel
+- **LinkedIn:** https://www.linkedin.com/in/ericpimentel-dados/
+- **GitHub:** https://github.com/enps2015
+- **Repositório do Projeto:** https://github.com/enps2015/crema-coffee-web
+- **URL Canônica de Produção:** https://enps2015.github.io/crema-coffee-web/
+
+---
+
+## Estrutura do Atlas
+
+### 01 · Origem & História
+Evolução botânica e cultural do café: das florestas de Kaffa (Etiópia) e dos monastérios sufis do Iêmen (século XV) à expansão comercial global e formação dos cafés do Iluminismo europeu.
+
+### 02 · Brasil & Terroirs
+Cartografia e georreferenciamento oficial dos terroirs cafeeiros brasileiros com dados do IBGE: Sul de Minas, Matas de Minas, Cerrado Mineiro, Alta Mogiana, Chapada Diamantina, Espírito Santo (Conilon) e Rondônia (Canéfora Amazônico).
+
+### 03 · Neurociência & Farmacocinética
+- **Mecanismo Molecular:** Antagonismo competitivo dos receptores de adenosina ($A_1$ e $A_{2A}$) pela molécula de cafeína, impedindo a desaceleração da frequência neuronal.
+- **Painel Farmacocinético:** Modelo monocompartimental de absorção e depuração hepática com parâmetros farmacocinéticos consolidados ($T_{\max} \approx 45\text{ min}$, meia-vida plasmática de 3 a 7 horas dependente de $CYP1A2$).
+- **CREMA° Anatomy 3D Lab:**
+  - Viewport tridimensional interativo renderizado via Three.js e Draco WASM.
+  - Modelos anatômicos da biblioteca de referência científica internacional **HuBMAP CCF** (NIH Human Biomolecular Atlas Program / National Library of Medicine / Visible Human Project), sob licença Creative Commons Attribution 4.0 International (CC BY 4.0).
+  - Órgãos mapeados: Coração, Cérebro, Pulmões, Fígado, Rins, Intestinos e Músculos.
+  - Fallback acessível em 2D vetorial (SVG) para dispositivos sem aceleração WebGL.
+
+### 04 · O Mito do Vício
+Análise farmacológica e clínica diferenciando dependência química clássica (ativação dopaminérgica compulsiva no estriado ventral) de tolerância funcional e cefaleia por abstinência transitória, segundo critérios do DSM-5 e revisões do New England Journal of Medicine (NEJM).
+
+### 05 · Métodos de Preparo & Laboratório SCA
+Exploração termodinâmica da extração cafeeira (V60, French Press, Aeropress, Espresso, Chemex, Cold Brew):
+- Relação entre granulometria, temperatura da água, tempo de contato e razão café:água.
+- Sólidos Solúveis Totais (TDS) e Rendimento de Extração (Extraction Yield) orientado à zona ideal da Specialty Coffee Association (SCA, 18–22%).
+
+### 06 · Data Lab & Séries Temporais
+Séries históricas de produção, preços internacionais, consumo e comércio exterior com fontes oficiais primárias:
+- Dados agrícolas da Companhia Nacional de Abastecimento (Conab).
+- Séries de câmbio e PTAX do Banco Central do Brasil (BCB).
+- Estatísticas globais da Organização Internacional do Café (ICO).
+- Cotações históricas da ICE Futures US e Cepea/ESALQ.
+
+### 06.5 · Terminal Live
+Painel de telemetria agroclimática e financeira em tempo real:
+- Condições meteorológicas dos principais polos produtores via Open-Meteo API.
+- Cotação do dólar comercial em tempo real via API do Banco Central do Brasil.
+- Estimativas dinâmicas de safra e balanço de oferta e demanda.
+
+### 07 · Plantas da Cafeína & Família das Xantinas
+Biologia evolutiva da síntese de cafeína em diferentes espécies vegetais (Coffea arabica/canephora, Camellia sinensis, Theobroma cacao, Ilex paraguariensis, Paullinia cupana) e química comparativa das metilxantinas:
+- **Cafeína (1,3,7-trimetilxantina):** Potente no SNC, antagonista de adenosina, $C_8H_{10}N_4O_2$.
+- **Teobromina (3,7-dimetilxantina):** Vasodilatadora suave e diurética, predominante no cacau, $C_7H_8N_4O_2$ ($N_1$ desmetilado).
+- **Teofilina (1,3-dimetilxantina):** Broncodilatadora potente, traços no chá e erva-mate, $C_7H_8N_4O_2$ ($N_7$ desmetilado).
+
+### 08 · Quarta Onda Cognitiva & Futuro
+Biotecnologia agrícola, fermentação de precisão por leveduras inoculadas, agricultura digital orientada por sensores IoT e o café como elemento central na nootropia e longevidade cognitiva.
+
+---
+
+## Diferenciação Metodológica
+1. **Evidência Científica Estrita:** Relações farmacodinâmicas, constantes cinéticas de enzimas citocromo P450, anatomia macroscópica HuBMAP e estatísticas governamentais oficiais (IBGE/Conab/BCB).
+2. **Modelos Pedagógicos Interativos:** O simulador de extração e a animação da corrida pelo receptor são aproximações visuais didáticas projetadas para compreensão intuitiva e não substituem instrumentação laboratorial (ex.: refratômetro óptico ou cromatografia HPLC).
+
+## Pilha Tecnológica
+- Arquitetura estática pura: HTML5 Semântico, Vanilla CSS (Design Tokens, Zero Tailwind), Vanilla JavaScript (ES Modules).
+- Gráficos e 3D: Three.js r128, Draco WASM Decoder, Leaflet.js 1.9.4, Lucide Icons.
+- Hospedagem: GitHub Pages (estático, sem backend proprietário).

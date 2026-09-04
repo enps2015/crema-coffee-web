@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CREMA° é um atlas interativo e científico sobre café: história socioeconômica, farmacocinética molecular, anatomia humana 3D (HuBMAP CCF), cartografia IBGE e análise de séries temporais em tempo real.">
+<meta name="author" content="Eric Pimentel">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://enps2015.github.io/crema-coffee-web/">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://enps2015.github.io/crema-coffee-web/">
+<meta property="og:title" content="CREMA° — Do grão ao neurônio · Atlas vivo do café">
+<meta property="og:description" content="CREMA° é um atlas interativo e científico sobre café: história socioeconômica, farmacocinética molecular, anatomia humana 3D (HuBMAP CCF), cartografia IBGE e análise de séries temporais em tempo real.">
+<meta property="og:image" content="https://enps2015.github.io/crema-coffee-web/assets/images/og-crema.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="675">
+<meta property="og:image:alt" content="CREMA° — Atlas Vivo do Café">
+<meta property="og:site_name" content="CREMA°">
+<meta property="og:locale" content="pt_BR">
+
+<!-- Twitter / X Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://enps2015.github.io/crema-coffee-web/">
+<meta name="twitter:title" content="CREMA° — Do grão ao neurônio · Atlas vivo do café">
+<meta name="twitter:description" content="CREMA° é um atlas interativo e científico sobre café: história socioeconômica, farmacocinética molecular, anatomia humana 3D (HuBMAP CCF), cartografia IBGE e análise de séries temporais em tempo real.">
+<meta name="twitter:image" content="https://enps2015.github.io/crema-coffee-web/assets/images/og-crema.jpg">
+
+<!-- Dados Estruturados Schema.org (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://enps2015.github.io/crema-coffee-web/#author",
+      "name": "Eric Pimentel",
+      "jobTitle": "Data Scientist & Software Engineer",
+      "sameAs": [
+        "https://www.linkedin.com/in/ericpimentel-dados/",
+        "https://github.com/enps2015"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://enps2015.github.io/crema-coffee-web/#website",
+      "url": "https://enps2015.github.io/crema-coffee-web/",
+      "name": "CREMA°",
+      "alternateName": "CREMA° — Do grão ao neurônio · Atlas vivo do café",
+      "description": "Atlas interativo sobre a ciência, história, economia e farmacologia do café.",
+      "publisher": {
+        "@id": "https://enps2015.github.io/crema-coffee-web/#author"
+      },
+      "inLanguage": "pt-BR"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://enps2015.github.io/crema-coffee-web/#webpage",
+      "url": "https://enps2015.github.io/crema-coffee-web/",
+      "name": "CREMA° — Do grão ao neurônio · Atlas vivo do café",
+      "isPartOf": {
+        "@id": "https://enps2015.github.io/crema-coffee-web/#website"
+      },
+      "about": [
+        { "@type": "Thing", "name": "Café" },
+        { "@type": "Thing", "name": "Cafeína" },
+        { "@type": "Thing", "name": "Neurociência" },
+        { "@type": "Thing", "name": "Farmacocinética" },
+        { "@type": "Thing", "name": "Anatomia Humana 3D" },
+        { "@type": "Thing", "name": "Agronegócio e Economia Cafeeira" }
+      ],
+      "creator": {
+        "@id": "https://enps2015.github.io/crema-coffee-web/#author"
+      },
+      "datePublished": "2026-09-01",
+      "dateModified": "2026-09-04",
+      "inLanguage": "pt-BR"
+    }
+  ]
+}
+</script>
+
+<title>CREMA° — Do grão ao neurônio · Atlas vivo do café</title>
+<link rel="icon" href="./favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="./css/main.css?v=20260903e">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "./js/vendor/three/three.module.js",
+    "three/addons/": "./js/vendor/three/"
+  }
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a class="logo" href="#top">crema<span class="deg">°</span></a>
+    <div class="nav-links">
+      <a href="#origem">Origem</a><a href="#brasil">Brasil</a><a href="#neuro">Neuro</a>
+      <a href="#vicio">Vicia?</a><a href="#metodos">Métodos</a><a href="#datalab">Data Lab</a>
+      <a href="#live">Live</a><a href="#cafeina">Cafeína</a><a href="#futuro">Futuro</a>
+      <a class="nav-cta" href="#laboratorio"><i data-lucide="flask-conical"></i>Laboratório</a>
+    </div>
+    <button id="menuBtn" aria-label="Abrir menu"><i data-lucide="menu"></i></button>
+    <div id="progress"></div>
+  </div>
+</nav>
+<div id="mobileMenu">
+  <a href="#origem">01 · Origem</a><a href="#brasil">02 · Brasil</a><a href="#neuro">03 · Neurociência</a>
+  <a href="#vicio">04 · Café vicia?</a><a href="#metodos">05 · Métodos & Lab</a><a href="#datalab">06 · Data Lab</a>
+  <a href="#live">06.5 · Terminal Live</a><a href="#cafeina">07 · Plantas da cafeína</a><a href="#futuro">08 · Futuro</a>
+</div>
+
+<header class="hero grainy" id="top">
+  <img class="hero-bg" src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=1800&auto=format&fit=crop" alt="" onerror="this.remove()">
+  <div class="hero-veil"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="hero-eyebrow"><span class="hero-brand-tag">CREMA<span class="deg">°</span></span><span class="hero-eyebrow-text">Um atlas interativo da cultura cafeeira</span></p>
+      <h1 class="hero-title">Do grão<br>ao <em>neurônio.</em></h1>
+      <p class="hero-sub">Nove séculos de história, a <strong>farmacologia da xícara</strong>, um mapa real e interativo do café brasileiro com malha oficial do IBGE, um Data Lab para quem vive de séries temporais e um <strong>Terminal ao vivo</strong> com clima, câmbio e safra — feito para quem já descobriu que <strong>café não é só café.</strong></p>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#origem">Iniciar a jornada <i data-lucide="arrow-down"></i></a>
+        <a class="btn btn-ghost" href="#live">Ver dados ao vivo <i data-lucide="activity"></i></a>
+      </div>
+      <div class="hero-ticker"><span class="dot"></span> xícaras servidas no mundo desde que você chegou: <b id="cupTicker">0</b></div>
+    </div>
+    <div class="cup-scene" aria-hidden="true">
+      <canvas id="steam"></canvas>
+      <svg class="cup-svg" viewBox="0 0 300 260">
+        <ellipse cx="150" cy="238" rx="118" ry="14" class="draw draw-soft"/>
+        <ellipse cx="150" cy="234" rx="96" ry="9" class="draw draw-soft"/>
+        <path d="M78 96 L94 218 Q96 230 110 230 L190 230 Q204 230 206 218 L222 96" class="draw"/>
+        <path d="M222 112 Q262 118 258 150 Q254 180 210 182" class="draw"/>
+        <ellipse cx="150" cy="96" rx="72" ry="16" class="draw"/>
+        <ellipse cx="150" cy="96" rx="60" ry="11.5" fill="#0B0705"/>
+        <ellipse cx="150" cy="94.5" rx="60" ry="11.5" fill="#2A170B" opacity=".85"/>
+        <path d="M112 90 Q150 84 190 92" stroke="#8A5A2E" stroke-width="2.5" fill="none" opacity=".7" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+  <div class="wrap"><div class="hero-stats">
+    <div class="hstat"><b>1<sup>º</sup></b><span>maior produtor mundial</span></div>
+    <div class="hstat"><b>44,6<sup>mi</sup></b><span>sacas exportadas em 2024 · recorde (Cecafé)</span></div>
+    <div class="hstat"><b>US$ 9,2<sup>bi</sup></b><span>receita cambial 2024 · recorde</span></div>
+    <div class="hstat"><b>≈63,4<sup>mi</sup></b><span>sacas · recorde de safra (Conab, 2020 e 2022)</span></div>
+  </div></div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track" id="mqTrack"></div></div>
+
+<section class="chapter light grainy" id="origem">
+  <div class="wrap">
+    <div class="cap-head reveal">
+      <p class="cap-num">Capítulo 01 — Origem</p>
+      <h2>A fruta que manteve <em>o mundo acordado</em></h2>
+      <p class="cap-lead">Antes de ser commodity, diploma de barista ou tema de tese em neurociência, o café foi uma cereja silvestre mastigada por cabras curiosas no altiplano etíope. Nove séculos depois, ele reorganiza impérios, funda bancos, inventa cafeterias — e abre os olhos de bilhões de pessoas às 6h da manhã. Esta é a linha do tempo dessa conspiração global contra o sono.</p>
+    </div>
+    <div class="origem-grid">
+      <div class="timeline">
+        <div class="t-item reveal"><p class="t-year">c. 850 d.C.</p><h3>A lenda do pastor Kaldi</h3><p>Nas florestas de <strong>Kaffa, na Etiópia</strong> — berço genético do <em>Coffea arabica</em> — a tradição conta que um pastor notou suas cabras saltitantes depois de comer cerejas vermelhas. Monges locais passaram a fervê-las para aguentar as vigílias de oração. Lenda ou não, os etíopes já mastigavam, fermentavam e faziam chá das folhas da fruta muito antes de o resto do planeta saber que ela existia — e mantêm a cerimônia do café viva até hoje.</p></div>
+        <div class="t-item reveal"><p class="t-year">séc. XV</p><h3>Qahwa: o vinho do Iêmen</h3><p>No Iêmen, sufis cultivam e bebem a <strong>qahwa</strong> — "aquilo que afasta o sono" — para meditar até o amanhecer. Do porto de <strong>Moca</strong> (sim, esse é a origem do nome) o café embarca para o mundo islâmico. Beber café virou ritual social e filosófico; em 1511, o governador de Moca chega a proibir a bebida — o banimento não dura.</p></div>
+        <div class="t-item reveal"><p class="t-year">1554–1652</p><h3>As "escolas dos sábios"</h3><p>Abrem em Constantinopla as <strong>kaveh kanes</strong>, cafeterias onde se discutia poesia e política. Na Europa do século XVII a febre se repete: os <em>coffee houses</em> ingleses são apelidados de <strong>penny universities</strong> — por um penny, o preço da xícara, comprava-se acesso às melhores conversas da cidade. De dentro deles nascem a Bolsa de Londres e a Lloyd's.</p></div>
+        <div class="t-item reveal"><p class="t-year">1727</p><h3>O contrabando que fundou um império</h3><p>O sargento-mor <strong>Francisco de Melo Palheta</strong> é enviado à Guiana Francesa para mediar uma disputa de fronteiras — e volta a Belém com mudas contrabandeadas. A versão mais contada: a esposa do governador francês escondeu as sementes <strong>num buquê de flores</strong> na despedida. Dessa haste nasceu a maior economia cafeeira da Terra.</p></div>
+        <div class="t-item hot reveal"><p class="t-year">1850–1900</p><h3>Barões, ferrovias e o café-com-leite</h3><p>Do Vale do Paraíba ao Oeste Paulista, o café reorganiza o território: <strong>ferrovias, cidades, bancos e a imigração italiana</strong> nascem orbitando a rubiácea. O porto de Santos vira o maior escoador de café do mundo, e o Brasil assume a liderança global de produção — que jamais perdeu, em 150 anos.</p></div>
+        <div class="t-item reveal"><p class="t-year">1931–1989</p><h3>Do café-com-política ao mercado livre</h3><p>Supersafras e a crise de 1929 levam à <strong>queima de estoques</strong> e à política de valorização. Em 1962, o Acordo Internacional do Café tenta domar preços com cotas. Quando ele morre, em 1989, o mercado se libera — e abre espaço para o que viria: <strong>qualidade como estratégia</strong>, não como acaso.</p></div>
+        <div class="t-item hot reveal"><p class="t-year">1999–hoje</p><h3>As ondas — e a quarta, científica</h3><p>O Brasil hospeda o primeiro <strong>Cup of Excellence</strong> do mundo (1999) e forma campeões mundiais de barista. A 2ª onda trouxe a cafeteria de bairro e o latte; a 3ª trouxe microlotes, torra clara e origem; a <strong>4ª onda — a que vivemos agora — é a do laboratório</strong>: dados, fermentação controlada, IA e neurociência do sabor. É o assunto do último capítulo deste atlas.</p></div>
+      </div>
+      <div class="t-side">
+        <figure class="ph plx-w reveal"><img class="plx" loading="lazy" src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=900&auto=format&fit=crop" alt="Preparo de café" onerror="phArt(this,'O ritual atravessou nove séculos')"><figcaption><b>O ritual atravessou nove séculos</b>Do qahwa dos sufis ao barista campeão mundial — a cerimônia mudou de forma, nunca de essência.</figcaption><span class="cred">Foto · Unsplash</span></figure>
+        <figure class="ph plx-w reveal" style="--d:.12s"><img class="plx" loading="lazy" src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=900&auto=format&fit=crop" alt="Grãos de café" onerror="phArt(this,'A fruta que conquistou o mundo')"><figcaption><b>A fruta que conquistou o mundo</b>De Kaffa a Santos: a mesma cereja, recontada em cada terra onde plantou raiz.</figcaption><span class="cred">Foto · Unsplash</span></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter grainy" id="brasil">
+  <div class="wrap">
+    <div class="cap-head reveal">
+      <p class="cap-num">Capítulo 02 — Brasil</p>
+      <h2>O império que nasceu <em>de um buquê de flores</em></h2>
+      <p class="cap-lead">Maior produtor, maior exportador e segundo maior consumidor do planeta: mais de um em cada três cafés do mundo nasce aqui. Mas "café brasileiro" é um plural — são dezenas de terroirs entre montanhas e planaltos, dois tipos botânicos e perfis que vão de caramelo a frutas amarelas. Ao lado, o <strong>mapa real e interativo</strong> do país: cartografia OpenStreetMap tematizada na nossa paleta, com a malha oficial dos estados sobreposta pela <strong>API de Malhas do IBGE</strong> — arraste, aproxime e clique nos pinos.</p>
+    </div>
+    <div class="map-flex">
+      <div class="map-box reveal">
+        <div id="leafMap"></div>
+        <p class="map-note"><i data-lucide="map-pin"></i><span id="mapStatus">Carregando mapa e malha do IBGE…</span> · arraste/role para explorar · clique nos pinos.</p>
+      </div>
+      <div class="region-panel reveal" style="--d:.1s">
+        <span class="corner c-tl"></span><span class="corner c-tr"></span><span class="corner c-bl"></span><span class="corner c-br"></span>
+        <div id="rpContent"></div>
+      </div>
+    </div>
+    <div class="uf-rank reveal">
+      <h4>Quanto cada estado produz</h4>
+      <p class="src-note" style="margin-bottom:16px">Estimativas aproximadas dos levantamentos da Conab por unidade federativa (safras recentes). Consulte a fonte primária em conab.gov.br.</p>
+      <div id="ufRank"></div>
+    </div>
+    <div class="proc-grid">
+      <div class="proc reveal"><i data-lucide="sun"></i><h4>Natural (seco)</h4><p>O método mais brasileiro: o fruto inteiro seca ao sol com a mucilagem aderida. Transfere doçura e corpo à xícara — é o café das "casas de vó" e de grande parte do Cerrado.</p></div>
+      <div class="proc reveal" style="--d:.1s"><i data-lucide="droplet"></i><h4>Cereja descascado</h4><p>Invenção brasileira que conquistou o mundo: a casca é removida antes da secagem, preservando a mucilagem. Doçura do natural com limpeza do lavado — o carro-chefe dos especiais nacionais.</p></div>
+      <div class="proc reveal" style="--d:.2s"><i data-lucide="waves"></i><h4>Lavado (fermentado)</h4><p>Toda a mucilagem é removida com água após fermentação controlada. Acidez mais brilhante e perfil mais "transparente" — dominante nos cafés de competição.</p></div>
+    </div>
+    <div class="cap-head reveal" style="max-width:900px;margin-bottom:34px">
+      <p class="cap-num">Arábica × Robusta</p>
+      <h2 style="font-size:clamp(30px,4vw,46px)">Duas plantas, <em>duas xícaras</em></h2>
+      <p class="cap-lead">A <strong>arábica</strong> (<em>Coffea arabica</em>) responde por ~74% da produção nacional e domina Minas Gerais. O <strong>conilon/robusta</strong> (<em>Coffea canephora</em>) reina no Espírito Santo e em Rondônia. A diferença começa na química do grão e termina no seu paladar.</p>
+    </div>
+    <div class="reveal">
+      <div class="vs-head">
+        <div class="vA">Arábica<small>Coffea arabica · ~74% da safra BR</small></div>
+        <div class="vB">Conilon / Robusta<small>Coffea canephora · ~26% da safra BR</small></div>
+      </div>
+      <div id="vsBody"></div>
+      <div class="vs-foot"><strong>Qual o preferido do Brasil?</strong> O consumidor nacional é historicamente <strong>arábica</strong>: filtrado no coador, torra média-escura e, para muitos, uma colher de açúcar — cerca de 23 milhões de sacas por ano ficam aqui dentro, o que faz do Brasil o segundo maior consumidor mundial. O conilon sustenta os blends "extrafortes" tradicionais, o solúvel e a crema generosa do espresso de padaria. A fronteira, porém, está se movendo: robustas especiais do Espírito Santo e o Robusta Amazônico de Rondônia já disputam prêmios — e provam que rusticidade não é sinônimo de xícara ruim.</div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter light grainy" id="neuro">
+  <div class="wrap">
+    <div class="cap-head reveal">
+      <p class="cap-num">Capítulo 03 — Neurociência do sabor & da dose</p>
+      <h2>Por que seu cérebro <em>ama tanto</em> esse líquido</h2>
+      <p class="cap-lead">"Só o cheirinho já me desperta" — frase cientificamente correta. O sabor do café é construído majoritariamente pelo olfato, e seu efeito estimulante é uma miragem molecular engenhosa. Primeiro o nariz, depois a molécula, depois o corpo inteiro — com um experimento interativo de dose e tempo.</p>
+    </div>
+    <figure class="ph plx-w reveal" style="height:clamp(260px,38vw,440px);margin-bottom:clamp(48px,6vw,80px)"><img class="plx" loading="lazy" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1600&auto=format&fit=crop" alt="Xícara de café" onerror="phArt(this,'Cada xícara é um experimento')"><figcaption><b>Cada xícara é um experimento farmacológico</b>Quase 1.000 compostos voláteis, um antagonista de receptor enganosamente simples e um cérebro disposto a acreditar que não é hora de dormir — entenda cada camada abaixo.</figcaption><span class="cred">Foto · Unsplash</span></figure>
+    <div class="brain-flex">
+      <div class="reveal">
+        <span class="step-chip">Etapa 1 — O nariz manda no assunto</span>
+        <h3>O sabor mora <em>no olfato</em>, não na língua</h3>
+        <p>A língua detecta apenas cinco gostos básicos. É o <strong>olfato retronasal</strong> — os voláteis que sobem da boca para o nariz ao engolir — que monta a experiência que você chama de "sabor". Café torrado carrega <strong>quase 1.000 compostos voláteis catalogados</strong>, mas um conjunto bem menor — algumas dezenas de odorantes-chave — comanda o que o cérebro reconhece como "café". Seu nariz opera com ~400 tipos de receptores olfativos, e um estudo clássico de 2014 na <em>Science</em> estimou que essa combinação distingue teoricamente <strong>mais de um trilhão de odores</strong>.</p>
+        <p>É por isso que, com a gripe entupindo o nariz, o café vira "só um líquido quente e amargo". E é por isso que degustadores profissionais aspiram o café espalhando-o por toda a cavidade nasal: <strong>avaliações sensoriais começam pelo nariz</strong>, com a xícara ainda longe da boca. O 2-furfuriltiol — presente em partes por bilhão — é o principal "carteiro" desse cheiro de café recém-passado que dispara memória afetiva antes de qualquer gota tocar a língua.</p>
+      </div>
+      <div class="synapse molecular-stage reveal" id="molecularStage" style="--d:.12s">
+        <div class="mol-header">
+          <span class="step-chip">Etapa 2 — A molécula que engana o cérebro</span>
+          <h3 class="mol-title">Corrida pelo receptor</h3>
+          <p class="mol-sub">Competição visual entre <strong>adenosina</strong> e <strong>cafeína</strong> nos sítios ortostéricos dos receptores <em>A₁</em> e <em>A₂A</em>. A representação didática exibe a cafeína com predominância antagonista sem deflagrar a sinalização associada, atenuando transitoriamente a influência visual da pressão de sono.</p>
+        </div>
+
+        <div class="mol-viewport-wrap" id="molecularViewport">
+          <canvas id="molecularCanvas" class="mol-canvas"></canvas>
+          <svg id="receptorSvg" class="mol-svg" viewBox="0 0 460 210" preserveAspectRatio="xMidYMid meet" aria-label="Receptores de adenosina A1 e A2A na membrana neuronal"></svg>
+        </div>
+
+        <div class="mol-panel" id="molPanel">
+          <div class="mol-readout">
+            <div class="mol-readout-item">
+              <span class="mol-label">Leitura Neuroquímica</span>
+              <strong id="molStateLabel" class="mol-val">Equilíbrio basal</strong>
+            </div>
+            <div class="mol-readout-item">
+              <span class="mol-label">Sinalização Adenosinérgica</span>
+              <span id="molSignalLabel" class="mol-signal sig-high">Predominante</span>
+            </div>
+          </div>
+          <div class="mol-legend">
+            <span class="mol-leg-item"><i class="leg-swatch caf"></i><b>Cafeína</b> (antagonista competitivo ortostérico)</span>
+            <span class="mol-leg-item"><i class="leg-swatch ade"></i><b>Adenosina</b> (agonista da pressão de sono)</span>
+          </div>
+        </div>
+
+        <p class="mol-note">Visualização didática qualitativa baseada na farmacologia de receptores. As faixas de concentração são utilizadas apenas como limiares internos para transição da visualização pedagógica.</p>
+      </div>
+    </div>
+    <div class="dose-lab reveal" id="doseLab">
+      <div class="dose-head">
+        <h3>O corpo na dose certa — e no tempo errado</h3>
+        <p>Escolha a dose e arraste o relógio: a curva mostra a concentração plasmática estimada por um modelo farmacocinético de compartimento único (absorção gastrintestinal + eliminação de 1ª ordem, meia-vida ~5 h). Na bancada anatômica abaixo, explore a resposta biológica em 3D dos órgãos no foco de ação da cafeína.</p>
+      </div>
+      <div class="dose-pk-expanded">
+        <div class="dose-ctl">
+          <div class="presets" id="dosePresets"></div>
+          <div class="ctl-head"><label><i data-lucide="pill"></i>Dose de cafeína</label><output id="oDose">95 mg</output></div>
+          <input type="range" id="sDose" min="40" max="640" step="5" value="95">
+          <div class="ctl-head" style="margin-top:18px"><label><i data-lucide="timer"></i>Tempo desde a ingestão</label><output id="oClock">T+0 min</output></div>
+          <input type="range" id="sClock" min="0" max="720" step="5" value="0">
+          <div class="curve-box">
+            <svg id="plasmaCurve" viewBox="0 0 460 190"></svg>
+            <div class="chart-tip" id="plasmaTip"></div>
+          </div>
+          <div class="state-pill" id="statePill"><b>Estado: basal</b></div>
+          <p class="src-note" style="margin-top:14px">Limites consolidados: <b>400 mg/dia</b> para adultos saudáveis (EFSA, 2015; FDA) e <b>~200 mg/dia</b> em gestantes. Modelo pedagógico — não substitui orientação profissional.</p>
+        </div>
+      </div>
+      <div class="dose-foot"><p class="src-note">Farmacologia de referência: absorção ~99% em até 45 min no intestino delgado; pico plasmático entre 30 e 120 min; meia-vida 3–7 h; metabolismo hepático via CYP1A2 → paraxantina (~80%), teobromina e teofilina. (van Dam et al., NEJM, 2020; EFSA, 2015.)</p></div>
+    </div>
+
+    <!-- Transição Editorial: Dose -> Tempo -> Concentração -> Distribuição -> Órgãos -->
+    <div class="editorial-bridge reveal">
+      <div class="bridge-divider"></div>
+      <div class="bridge-body">
+        <span class="bridge-kicker">Distribuição Sistêmica &amp; Farmacodinâmica</span>
+        <div class="bridge-sequence">
+          <span class="b-step">Dose</span>
+          <span class="b-sep">→</span>
+          <span class="b-step">Tempo</span>
+          <span class="b-sep">→</span>
+          <span class="b-step">Concentração Plasmática</span>
+          <span class="b-sep">→</span>
+          <span class="b-step">Barreiras Biológicas</span>
+          <span class="b-sep">→</span>
+          <span class="b-step b-target">Tecidos &amp; Órgãos-Alvo</span>
+        </div>
+      </div>
+      <div class="bridge-divider"></div>
+    </div>
+
+    <!-- Bancada Científica: CREMA° Anatomy 3D Lab -->
+    <section class="anatomy-lab-section reveal" id="anatomyLabSection">
+      <header class="lab-header">
+          <div class="lab-brand">
+            <span class="lab-logo">crema<span class="deg">°</span></span>
+            <span class="lab-badge">Anatomy 3D Lab · HuBMAP CCF</span>
+          </div>
+          <div class="lab-nav-actions">
+            <a href="#doseLab" class="btn-back"><i data-lucide="arrow-up"></i> Ajustar Dose &amp; Tempo</a>
+          </div>
+        </header>
+
+        <div class="lab-main">
+          <!-- Introdução e Seletor de Modo -->
+          <div class="lab-intro">
+            <div class="lab-intro-text">
+              <h3>Ghost Anatomy &amp; Progressive 3D Pipeline</h3>
+              <p>Exploração tridimensional imersiva da ação da cafeína nos tecidos humanos com modelos da biblioteca de referência científica internacional <strong>HuBMAP CCF</strong>.</p>
+            </div>
+            <div class="lab-controls-bar">
+              <button class="view-mode-btn active" id="btnMode3D" type="button"><i data-lucide="box"></i> Ghost 3D Lab</button>
+              <button class="view-mode-btn" id="btnMode2D" type="button"><i data-lucide="scan"></i> Fallback 2D (SVG)</button>
+            </div>
+          </div>
+
+          <!-- Camada 1: Exploração Anatômica (Dock Lateral + Viewport 3D) -->
+          <div class="lab-stage-grid">
+            <!-- 1. Dock Lateral -->
+            <aside class="organ-dock" aria-label="Seleção de órgãos e sistemas">
+              <div class="dock-header">
+                <span class="dock-eyebrow">Sistemas &amp; Órgãos</span>
+                <span class="dock-hint">Clique para navegar</span>
+              </div>
+              <div class="dock-items">
+                <button class="organ-chip active" data-organ="heart" type="button" id="chip-heart">
+                  <span class="chip-dot"></span>
+                  <div class="chip-text">
+                    <span class="chip-title">Coração</span>
+                    <span class="chip-sub">Cardiovascular</span>
+                  </div>
+                </button>
+                <button class="organ-chip" data-organ="brain" type="button" id="chip-brain">
+                  <span class="chip-dot"></span>
+                  <div class="chip-text">
+                    <span class="chip-title">Cérebro</span>
+                    <span class="chip-sub">SNC / Cognição</span>
+                  </div>
+                </button>
+                <button class="organ-chip" data-organ="lungs" type="button" id="chip-lungs">
+                  <span class="chip-dot"></span>
+                  <div class="chip-text">
+                    <span class="chip-title">Pulmões</span>
+                    <span class="chip-sub">Respiratório</span>
+                  </div>
+                </button>
+                <button class="organ-chip" data-organ="liver" type="button" id="chip-liver">
+                  <span class="chip-dot"></span>
+                  <div class="chip-text">
+                    <span class="chip-title">Fígado</span>
+                    <span class="chip-sub">Hepático / CYP1A2</span>
+                  </div>
+                </button>
+                <button class="organ-chip" data-organ="kidneys" type="button" id="chip-kidneys">
+                  <span class="chip-dot"></span>
+                  <div class="chip-text">
+                    <span class="chip-title">Rins</span>
+                    <span class="chip-sub">Renal / eGFR</span>
+                  </div>
+                </button>
+                <button class="organ-chip" data-organ="intestines" type="button" id="chip-intestines">
+                  <span class="chip-dot"></span>
+                  <div class="chip-text">
+                    <span class="chip-title">Intestinos</span>
+                    <span class="chip-sub">Enteral / Tmax</span>
+                  </div>
+                </button>
+                <button class="organ-chip" data-organ="muscles" type="button" id="chip-muscles">
+                  <span class="chip-dot"></span>
+                  <div class="chip-text">
+                    <span class="chip-title">Músculos</span>
+                    <span class="chip-sub">Somático / RyR1</span>
+                  </div>
+                </button>
+              </div>
+              <div class="dock-footer">
+                <button class="dock-action-btn" id="btnShowAll" type="button"><i data-lucide="eye"></i> Mostrar Todos</button>
+              </div>
+            </aside>
+
+            <!-- 2. Viewport 3D / Fallback 2D -->
+            <div class="viewport-card">
+              <span class="corner c-tl"></span>
+              <span class="corner c-tr"></span>
+              <span class="corner c-bl"></span>
+              <span class="corner c-br"></span>
+
+              <div class="viewport-top">
+                <div class="viewport-tag" id="viewportStatus">
+                  <span class="pulse-dot"></span> Ghost Anatomy 3D · Carregamento Ativo
+                </div>
+                <div class="viewport-actions">
+                  <button class="action-btn" id="btnBodyGuide" type="button" title="Alternar contorno somático Ghost Shell"><i data-lucide="user-check"></i> Ghost Shell: ON</button>
+                  <button class="action-btn" id="btnLighting" type="button" title="Alternar perfil de iluminação"><i data-lucide="sun"></i> Luz Editorial</button>
+                  <button class="action-btn" id="btnResetCam" type="button" title="Redefinir visualização para visão geral"><i data-lucide="rotate-ccw"></i> Visão Geral</button>
+                </div>
+              </div>
+
+              <div class="canvas-wrapper" id="canvasWrapper"></div>
+              <div class="fallback-wrapper" id="fallbackWrapper"></div>
+
+              <div class="viewport-loader" id="viewportLoader">
+                <div class="spinner"></div>
+                <span class="loader-msg" id="loaderMsg">Carregando Órgãos 3D...</span>
+              </div>
+
+              <div class="viewport-bottom">
+                <span class="hint-pill"><i data-lucide="orbit"></i> Arraste para orbitar · Scroll para zoom · Clique no órgão para isolar</span>
+                <span class="hint-pill">Origem: HuBMAP CCF (CC BY 4.0)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Camada 2: Painel Científico Editorial em Largura Total (Zero Scroll Interno) -->
+          <article class="info-card-expanded" id="organInfoCard">
+            <header class="info-header">
+              <div class="info-meta">
+                <span class="organ-category" id="organCat">Sistema Cardiovascular · Miocárdio &amp; Nó Sinoatrial</span>
+                <div class="info-badges">
+                  <span class="hubmap-badge" id="organModelBadge">3d-vh-m-heart.glb (Visible Human Male / HuBMAP CCF v1.3)</span>
+                  <span class="evidence-badge" id="organEvidenceBadge">Nível 1 — Bem suportada (Meta-análises e Coortes Prospectivas)</span>
+                </div>
+              </div>
+              <h3 class="organ-title" id="organTitle">Coração — Cronotropismo, Inotropismo e Tolerância</h3>
+              <div class="organ-tags" id="organTags"></div>
+            </header>
+
+            <div class="info-body-grid">
+              <div class="info-prose">
+                <div class="organ-desc" id="organDesc">
+                  <p>O miocárdio e os vasos expressam receptores de adenosina A₁ e A₂A que medeiam tônus inibitório sobre o nó sinoatrial e tônus vasodilatador...</p>
+                </div>
+                <div class="caffeine-card" id="organCaffeine">
+                  <strong>Ação Farmacológica:</strong> Elevação média de 2 a 4 mmHg na pressão sistólica em indivíduos abstêmios ou virgens de cafeína...
+                </div>
+              </div>
+
+              <div class="info-metrics-wrap">
+                <h4 class="metrics-eyebrow">Parâmetros Farmacodinâmicos</h4>
+                <div class="organ-metrics" id="organMetrics"></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Camada 3: Telemetria Técnica Recolhida (Para Auditoria/Debug sem Poluir UX) -->
+          <details class="telemetry-accordion">
+            <summary class="telemetry-summary">
+              <span><i data-lucide="cpu"></i> Telemetria Técnica &amp; Contexto GPU (Auditoria de Produção)</span>
+              <span class="telemetry-chevron"><i data-lucide="chevron-down"></i></span>
+            </summary>
+            <div class="telemetry-bar">
+              <div class="tele-item"><span class="tele-label">Contexto Gráfico</span><span class="tele-val" id="teleGlVersion">WebGL 2.0</span></div>
+              <div class="tele-item"><span class="tele-label">GPU Renderer</span><span class="tele-val" id="teleGlRenderer">Detectando...</span></div>
+              <div class="tele-item"><span class="tele-label">1º Render (TTFR)</span><span class="tele-val" id="teleTtfr">-- ms</span></div>
+              <div class="tele-item"><span class="tele-label">Acervo no Cache</span><span class="tele-val" id="teleCacheCount">0 / 6 modelos</span></div>
+              <div class="tele-item"><span class="tele-label">Payload Transferido</span><span class="tele-val" id="telePayloadBytes">0 MB</span></div>
+              <div class="tele-item"><span class="tele-label">Triângulos Ativos</span><span class="tele-val" id="teleTris">--</span></div>
+              <div class="tele-item"><span class="tele-label">Taxa de Quadros</span><span class="tele-val" id="teleFps">60 FPS</span></div>
+              <div class="tele-item"><span class="tele-label">Draw Calls</span><span class="tele-val" id="teleDrawCalls">--</span></div>
+            </div>
+            <div class="lab-credits-bar">
+              <span><strong>Atribuição HuBMAP CCF:</strong> Modelos 3D desenvolvidos pelo NIH Human Biomolecular Atlas Program &amp; NLM (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>).</span>
+              <span><strong>CREMA° Anatomy Lab:</strong> Conceito e integração por Eric Pimentel.</span>
+            </div>
+          </details>
+        </div>
+      </section>
+    <div class="reveal">
+      <p class="cap-num" style="margin-bottom:24px">O elenco molecular da sua xícara</p>
+      <div class="comp-list">
+        <div class="comp"><span class="n">C₈H₁₀N₄O₂</span><h4>Cafeína</h4><p>Defesa química da planta contra insetos — nós só pegamos carona. Amarga, mas responde por <strong>apenas ~10% do amargor percebido</strong>; o resto vem de ácidos clorogênicos e produtos da torra. No cérebro, bloqueia adenosina; no fígado, é quebrada em paraxantina.</p></div>
+        <div class="comp"><span class="n">CGA</span><h4>Ácidos clorogênicos</h4><p>Antioxidantes que degradam na torra em ácidos caféico e quínico: <strong>fonte principal do amargor e da adstringência</strong>. A robusta carrega quase o dobro da arábica — daí sua dureza característica.</p></div>
+        <div class="comp"><span class="n">C₁₂H₂₂O₁₁</span><h4>Sacarose</h4><p>Açúcar do grão, matéria-prima da doçura: carameliza entre ~170 e 205 °C. A arábica carrega <strong>cerca do dobro</strong> da sacarose da robusta — é daí que nasce o "doce de fruta" dos especiais.</p></div>
+        <div class="comp"><span class="n">N-metil</span><h4>Trigonelina</h4><p>Alcaloide que se converte em <strong>pirazinas e niacina (vitamina B3)</strong> durante a torra — responsável pelas notas tostadas, de nozes e pão quente.</p></div>
+        <div class="comp"><span class="n">Maillard</span><h4>Melanoidinas</h4><p>Polímeros gigantes da reação de Maillard: dão a cor marrom profunda, <strong>corpo e aquela amargura doce</strong> que sustenta o café escuro de domingo.</p></div>
+        <div class="comp"><span class="n">2-FFT</span><h4>2-Furfuriltiol</h4><p>Em <strong>partes por bilhão</strong>, é o odorante-chave que seu nariz identifica como "café recém-torrado". O carteiro da memória afetiva.</p></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="cap-num" style="margin-bottom:24px;margin-top:clamp(50px,6vw,76px)">A torra é uma curva, não uma cor</p>
+      <div class="roast-wrap">
+        <div class="roast-steps" id="roastSteps"></div>
+        <div class="roast-panel">
+          <h4 id="rName">—</h4><span class="rt" id="rTemp">—</span><p id="rDesc">—</p>
+          <div class="r-profile">
+            <div><span>Acidez</span><div class="rbar"><i id="rb0"></i></div></div>
+            <div><span>Doçura</span><div class="rbar"><i id="rb1"></i></div></div>
+            <div><span>Corpo</span><div class="rbar"><i id="rb2"></i></div></div>
+            <div><span>Amargor</span><div class="rbar"><i id="rb3"></i></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter grainy" id="vicio">
+  <div class="wrap">
+    <div class="cap-head reveal">
+      <p class="cap-num">Capítulo 04 — O mito do vício</p>
+      <h2>"Café vicia?" <em>O que a ciência realmente diz</em></h2>
+      <p class="cap-lead">É a substância psicoativa mais consumida do planeta — e a mais mal compreendida. A resposta curta da neurociência: <strong>cafeína causa dependência física leve e bem documentada; não preenche, porém, os critérios clínicos clássicos de adicação</strong>. Vire cada card e veja a evidência.</p>
+    </div>
+    <div class="flip-grid" id="flipGrid"></div>
+    <div class="abyss reveal">
+      <h3>Anatomia de uma <em>abstinência branda</em></h3>
+      <p>O DSM-5 reconhece oficialmente a <strong>Abstinência de Cafeína</strong> — sintomas desagradáveis, mas autolimitados e sem os descontroles das dependências graves. A linha do tempo típica:</p>
+      <div class="withd-row"><span class="w-t">T+ 12–24 h</span><div><b>Começa a dor de cabeça</b><p>Com a adenosina voltando aos receptores recém-multiplicados, vasos cerebrais dilatam: cefaleia, sonolência e irritabilidade entram em cena.</p></div></div>
+      <div class="withd-row"><span class="w-t">T+ 24–48 h</span><div><b>Pico dos sintomas</b><p>Fadiga marcante, humor deprimido, dificuldade de concentração e — para alguns — sintomas gripais leves. É o momento em que "o café parece medicamento".</p></div></div>
+      <div class="withd-row"><span class="w-t">2–9 dias</span><div><b>Resolução espontânea</b><p>O sistema se recalibra sozinho. Sem droga de substituição, sem protocolo médico: a abstinência de cafeína se extingue em menos de duas semanas.</p></div></div>
+      <div class="wave" id="withdrawWave"></div>
+      <p class="src-note" style="margin-top:12px">Critérios: American Psychiatric Association, DSM-5 (2013) — "Caffeine Withdrawal".</p>
+    </div>
+    <div class="evi-grid">
+      <div class="evi reveal"><p class="e-tag"><i data-lucide="heart-pulse"></i>Benefícios associados · revisão de referência</p><h4>O New England Journal of Medicine pesou os prós e contras</h4><p>Na revisão <em>Coffee, Caffeine, and Health</em> (van Dam, Hu & Willett, <strong>NEJM, 2020</strong>), o consumo habitual moderado (3–4 xícaras/dia) associou-se a <strong>menor risco de diabetes tipo 2, doença hepática, Parkinson e depressão</strong>, com relação causal provável para a doença hepática. Correlação não é causa — mas, após décadas de estudo, o saldo é de retirada de acusações, não de condenação.</p></div>
+      <div class="evi reveal" style="--d:.1s"><p class="e-tag"><i data-lucide="moon"></i>O único efeito colateral "de graça"</p><h4>Cafeína tarde = sono encolhido, mesmo sem você perceber</h4><p>Em estudo controlado (Drake et al., <em>J. Clin. Sleep Med.</em>, 2013), <strong>400 mg tomados 6 horas antes de deitar reduziram objetivamente o sono medido por polissonografia</strong> — com os participantes subestimando o efeito. Com meia-vida de ~5 h, às 23h ainda circula metade do espresso das 18h.</p></div>
+    </div>
+    <div class="reveal">
+      <p class="cap-num" style="margin-bottom:22px">Por que você sente diferente do seu amigo? Genética.</p>
+      <div class="gene-row">
+        <div class="gene"><b>CYP1A2 — o metilador</b><p>A enzima hepática que metaboliza praticamente toda a cafeína tem variantes comuns: <strong>metabolizadores rápidos eliminam a molécula depressa e tendem a colher mais benefícios cardiovasculares</strong>; metabolizadores lentos ficam mais tempo expostos e relatam mais ansiedade e insônia com a mesma xícara.</p></div>
+        <div class="gene"><b>ADORA2A — o receptor</b><p>Polimorfismos no gene do receptor de adenosina A₂A modulam a resposta subjetiva: <strong>certas variantes associam-se a maior propensão ao efeito ansiogênico</strong> da cafeína em doses altas — o "coração acelerado" de alguns depois do terceiro espresso.</p></div>
+      </div>
+      <p class="src-note" style="margin-top:16px">Leituras de base: Nehlig, A. "Are we dependent upon coffee and caffeine?" — Neurosci. Biobehav. Rev., 1999 · van Dam et al., NEJM, 2020 · EFSA, 2015 · DSM-5, APA, 2013.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter light grainy" id="metodos">
+  <div class="wrap">
+    <div class="cap-head reveal">
+      <p class="cap-num">Capítulo 05 — Métodos de extração</p>
+      <h2>A mesma torra, <em>infinitos cafés</em></h2>
+      <p class="cap-lead">Existem três grandes famílias — <strong>fervura, imersão e filtragem</strong> (com a variante sob pressão) — e uma dúzia de métodos populares derivados delas. O grão é o mesmo; o que muda é a geometria da moagem, temperatura, tempo e o que a água encontra no caminho. E isso muda tudo: os mesmos 15 g podem render um néctar de caramelo ou um resumo adstringente de madeira.</p>
+    </div>
+    <div class="methods-flex">
+      <div class="m-list reveal" id="mList"></div>
+      <div class="m-panel reveal" style="--d:.1s">
+        <span class="corner c-tl"></span><span class="corner c-tr"></span><span class="corner c-bl"></span><span class="corner c-br"></span>
+        <div id="mpContent"></div>
+      </div>
+    </div>
+    <div class="lab reveal" id="laboratorio">
+      <span class="corner c-tl"></span><span class="corner c-tr"></span><span class="corner c-bl"></span><span class="corner c-br"></span>
+      <div class="lab-grid">
+        <div class="lab-controls">
+          <h3>Laboratório de Extração</h3>
+          <span class="lab-sub">Experimento interativo · janela ideal SCA: 18–22%</span>
+          <div class="chips" id="labChips"></div>
+          <div class="lab-ctl">
+            <div class="ctl-head"><label><i data-lucide="scan"></i>Moagem</label><output id="oGrind">—</output></div>
+            <input type="range" id="sGrind" min="1" max="10" step="1" value="4">
+            <p class="ctl-hint" id="hGrind">1 = talco (turco/espresso) · 10 = pedregulho (cold brew)</p>
+          </div>
+          <div class="lab-ctl">
+            <div class="ctl-head"><label><i data-lucide="thermometer"></i>Temperatura</label><output id="oTemp">—</output></div>
+            <input type="range" id="sTemp" min="4" max="98" step="1" value="94">
+            <p class="ctl-hint">Frio não arranca amargor — mas cobra em horas de contato.</p>
+          </div>
+          <div class="lab-ctl">
+            <div class="ctl-head"><label><i data-lucide="timer"></i>Tempo de contato</label><output id="oTime">—</output></div>
+            <input type="range" id="sTime" min="0" max="1000" step="1" value="620">
+            <p class="ctl-hint">Escala logarítmica: de 10 segundos a quase 18 horas.</p>
+          </div>
+          <div class="lab-ctl" style="margin-bottom:4px">
+            <div class="ctl-head"><label><i data-lucide="droplets"></i>Razão café : água</label><output id="oRatio">—</output></div>
+            <input type="range" id="sRatio" min="2" max="18" step="0.5" value="15">
+            <p class="ctl-hint" id="hRatio">Dose de referência: 15 g de café</p>
+          </div>
+        </div>
+        <div class="lab-out">
+          <div class="cup-lab">
+            <div class="cupL">
+              <svg viewBox="0 0 120 190">
+                <defs><clipPath id="cupClipL"><rect x="16" y="14" width="88" height="156" rx="9"/></clipPath></defs>
+                <rect x="16" y="14" width="88" height="156" rx="9" fill="none" stroke="rgba(233,223,206,.35)" stroke-width="2"/>
+                <g clip-path="url(#cupClipL)">
+                  <rect id="liq" x="16" y="58" width="88" height="112" fill="#6E421F" style="transition:fill .5s"/>
+                  <rect id="cremaL" x="16" y="58" width="88" height="9" fill="#CE9464" opacity="0" style="transition:opacity .5s"/>
+                </g>
+              </svg>
+            </div>
+            <div class="gauges">
+              <div class="g-row"><div class="g-lab"><span>Acidez</span><output id="vAcid">—</output></div><div class="g-track f-acid"><i id="bAcid"></i></div></div>
+              <div class="g-row"><div class="g-lab"><span>Doçura</span><output id="vSweet">—</output></div><div class="g-track f-sweet"><i id="bSweet"></i></div></div>
+              <div class="g-row"><div class="g-lab"><span>Amargor</span><output id="vBitter">—</output></div><div class="g-track f-bitter"><i id="bBitter"></i></div></div>
+              <div class="g-row"><div class="g-lab"><span>Corpo</span><output id="vBody">—</output></div><div class="g-track f-body"><i id="bBody"></i></div></div>
+            </div>
+          </div>
+          <div class="gauge">
+            <div class="g-lab" style="display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:7px"><span>Extração total</span><output id="vExtr" style="color:var(--crema-soft)">—</output></div>
+            <div class="g-track2"><div class="g-zone"></div><div class="g-needle" id="needle"></div></div>
+            <div class="g-scale"><span>10%</span><span><b>18–22% zona ideal</b></span><span>30%</span></div>
+          </div>
+          <div class="g-row" style="margin-bottom:18px"><div class="g-lab"><span>Força na xícara (TDS) · Cafeína estimada</span><output id="vTds">—</output></div><div class="g-track"><i id="bTds" style="background:var(--paper);opacity:.85"></i></div></div>
+          <div class="verdict" id="verdictBox">
+            <i data-lucide="flask-conical"></i>
+            <div><b id="verdictTitle">—</b><p id="verdictText">—</p></div>
+          </div>
+          <p class="lab-foot">Modelo pedagógico das relações entre moagem, temperatura, tempo e razão — não substitui o refratômetro. Cafeína estimada para arábica (~1,4%).</p>
+        </div>
+      </div>
+    </div>
+    <div class="strip-3 reveal">
+      <figure class="ph plx-w"><img class="plx" loading="lazy" src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=900&auto=format&fit=crop" alt="Espresso" onerror="phArt(this,'Espresso · 9 bar')"><figcaption><b>Espresso · 9 bar</b>A física da pressão em 27 segundos de teatro líquido.</figcaption><span class="cred">Foto · Unsplash</span></figure>
+      <figure class="ph plx-w" style="--d:.1s"><img class="plx" loading="lazy" src="https://images.unsplash.com/photo-1459755486867-b55449bb39ff?q=80&w=900&auto=format&fit=crop" alt="Pour over" onerror="phArt(this,'V60 · gravidade')"><figcaption><b>V60 · gravidade</b>Três vertidos, uma cama de café, máxima clareza na xícara.</figcaption><span class="cred">Foto · Unsplash</span></figure>
+      <figure class="ph plx-w" style="--d:.2s"><img class="plx" loading="lazy" src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=900&auto=format&fit=crop" alt="Cold brew" onerror="phArt(this,'Cold brew · paciência')"><figcaption><b>Cold brew · paciência</b>18 horas de steep a frio: doçura sem amargor, cafeína em dobro.</figcaption><span class="cred">Foto · Unsplash</span></figure>
+    </div>
+    <div class="vessel reveal">
+      <h3>O sexto ingrediente: <em>o recipiente</em></h3>
+      <p>Faz diferença? Mais do que a maioria imagina. O material do filtro decide quais óleos e sedimentos chegam à xícara — e a xícara em si decide por quanto tempo o café continua vivo nela.</p>
+      <div class="v-list">
+        <div class="v-item"><b>Pano (coador brasileiro)</b><p>Retém parte dos óleos e, com o uso, absorve o próprio sabor: <strong>o "café de casa de vó" é também assinatura do pano</strong>. Filtragem com memória — por isso exige higienização caprichada e troca frequente.</p></div>
+        <div class="v-item"><b>Papel (V60, Chemex)</b><p>Barreira total para óleos e sedimentos: <strong>xícara límpida, acidez brilhante, corpo leve</strong>. É o material que deixa o terroir falar mais alto — e o mais usado em degustações oficiais.</p></div>
+        <div class="v-item"><b>Metal (French press, moka)</b><p>Deixa os óleos passarem: <strong>corpo, textura sedosa e notas de cacau ganham peso</strong>. O café que o papel esconde, o metal entrega — incluindo os amargos.</p></div>
+        <div class="v-item"><b>Cerâmica pré-aquecida</b><p>Neutra e excelente isolante: segura o calor, e <strong>o café segue extraindo dentro da xícara</strong>, mudando de sabor a cada minuto. Encha a xícara de água quente antes — seu espresso agradece.</p></div>
+        <div class="v-item"><b>Vidro</b><p>Inerte e honesto — mostra cor e sedimentação, ótimo para degustações comparativas. Perde calor rápido: <strong>perfeito para avaliar, ruim para demorar</strong>.</p></div>
+        <div class="v-item"><b>A forma da xícara</b><p>Boca estreita e alta <strong>concentra os voláteis no nariz</strong>; xícara larga dispersa o aroma. É por isso que o espresso mora numa tacinha — cada milímetro é engenharia de aroma.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter grainy" id="datalab">
+  <div class="wrap">
+    <div class="cap-head reveal">
+      <p class="cap-num">Capítulo 06 — Data Lab</p>
+      <h2>O café como <em>série temporal</em></h2>
+      <p class="cap-lead">Feito para quem vive de dados: produção, preços, comércio e consumo em gráficos vivos, com fontes primárias nomeadas. Os valores são aproximações honestas dos levantamentos oficiais — <strong>o sinal importa mais que a terceira casa decimal</strong>. No fim da seção, as APIs abertas para você baixar o dado bruto e ir além.</p>
+    </div>
+    <div class="reveal">
+      <div class="tabs" id="dlTabs">
+        <button class="tab on" data-t="prod"><i data-lucide="wheat"></i>Produção</button>
+        <button class="tab" data-t="preco"><i data-lucide="trending-up"></i>Preços</button>
+        <button class="tab" data-t="comex"><i data-lucide="ship"></i>Comércio exterior</button>
+        <button class="tab" data-t="consumo"><i data-lucide="coffee"></i>Consumo</button>
+      </div>
+      <div class="tabpane on" id="pane-prod">
+        <button class="play-btn" id="prodPlay"><i data-lucide="play"></i>Reexecutar bienalidade</button>
+        <div class="chart-box"><svg id="prodChart" viewBox="0 0 720 300"></svg></div>
+        <p class="src-note">Fonte: Conab, levantamentos finais (valores aproximados, milhões de sacas de 60 kg). Note o <b>sawtooth</b> da bienalidade da arábica — anos "cheios" e "vazios" alternados — e os choques climáticos de 2021 (geada no Centro-Sul) e 2023/24 (El Niño, seca) achatando o ciclo.</p>
+      </div>
+      <div class="tabpane" id="pane-preco">
+        <div class="legend"><span><i class="sw" style="background:#B57A33"></i>Arábica NY (ICE) · US$/lb</span><span><i class="sw" style="background:#5F7048"></i>Arábica Cepea/ESALQ · R$/saca (eixo dir.)</span></div>
+        <div class="chart-box"><svg id="priceChart" viewBox="0 0 720 310"></svg><div class="chart-tip" id="priceTip"></div></div>
+        <p class="src-note">Séries aproximadas e suavizadas para leitura visual (pontos trimestrais/semestrais). Fontes primárias: ICE Futures US e Cepea/ESALQ. O recorde de <b>~US$ 4,30/lb em fev/2025</b> é o maior valor nominal da história; em valores reais corrigidos, o pico dos anos 1970 ainda lidera.</p>
+      </div>
+      <div class="tabpane" id="pane-comex">
+        <div class="dl-bignums">
+          <div><b>44,6 mi</b><span>sacas exportadas · 2024 · recorde (Cecafé)</span></div>
+          <div><b>US$ 9,2 bi</b><span>receita cambial · 2024 · recorde</span></div>
+          <div><b>~87%</b><span>do volume segue verde (não torrado)</span></div>
+        </div>
+        <div class="donut-flex">
+          <div class="donut-box"><svg id="donutExport" viewBox="0 0 200 200"></svg></div>
+          <div>
+            <h4 style="font-family:var(--f-disp);font-size:21px;margin-bottom:4px">O que sai do Porto de Santos</h4>
+            <p style="font-size:14px;color:var(--ink-dark-dim);margin-bottom:14px">Destinos aproximados do volume exportado em 2024. O café solúvel bateu recorde de receita no ano — sinal de que o Brasil quer vender mais valor agregado, não apenas saca crua.</p>
+            <div id="destRows"></div>
+            <p class="src-note" style="margin-top:12px">Fontes: Cecafé · Comex Stat (MDIC). Participações aproximadas.</p>
+          </div>
+        </div>
+      </div>
+      <div class="tabpane" id="pane-consumo">
+        <div class="dl-bignums">
+          <div><b>~175 mi</b><span>sacas · consumo mundial/ano (ICO, aprox.)</span></div>
+          <div><b>2,25 bi</b><span>de xícaras por dia no mundo (estimativa ICO)</span></div>
+          <div><b>2<sup>º</sup></b><span>maior consumidor: o Brasil, ~23 mi sacas/ano</span></div>
+        </div>
+        <h4 style="font-family:var(--f-disp);font-size:21px;margin:8px 0 16px">Café per capita — kg/habitante/ano</h4>
+        <div id="capRows"></div>
+        <p class="src-note" style="margin-top:12px">Estimativas consolidadas de relatórios ICO e institutos nacionais; valores aproximados. A Finlândia lidera há décadas — 12 kg/hab/ano são cerca de 4 xícaras diárias para cada cidadão, bebês incluídos.</p>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="cap-num" style="margin-bottom:20px;margin-top:clamp(44px,5.5vw,64px)">Fontes abertas para sua análise (e para a sua comunidade)</p>
+      <div class="api-grid">
+        <a class="api" href="https://sidra.ibge.gov.br" target="_blank" rel="noopener"><b><i data-lucide="database"></i>IBGE SIDRA</b><p>Tabela 5457: área colhida, rendimento e produção de café por município — com API JSON pronta para pandas.</p></a>
+        <a class="api" href="https://comexstat.mdic.gov.br" target="_blank" rel="noopener"><b><i data-lucide="ship"></i>Comex Stat (MDIC)</b><p>Exportações de café por NCM, estado e município exportador. Combine com a malha IBGE para mapas coropléticos.</p></a>
+        <a class="api" href="https://www.conab.gov.br" target="_blank" rel="noopener"><b><i data-lucide="wheat"></i>Conab</b><p>Levantamentos de safra: área, produção, estoques — os dados que movem a bolsa.</p></a>
+        <a class="api" href="https://www.ico.org" target="_blank" rel="noopener"><b><i data-lucide="globe"></i>ICO</b><p>Relatórios mensais do mercado mundial: preços indicadores, exportações por tipo, consumo por país.</p></a>
+        <a class="api" href="https://cepea.esalq.usp.br" target="_blank" rel="noopener"><b><i data-lucide="line-chart"></i>Cepea/ESALQ</b><p>A série histórica de preço do arábica brasileiro — referência contratual do mercado físico.</p></a>
+        <a class="api" href="https://fdc.nal.usda.gov" target="_blank" rel="noopener"><b><i data-lucide="flask-round"></i>USDA FoodData Central</b><p>Composição química de alimentos: cafeína por bebida e porção — base da comparação do capítulo 07.</p></a>
+      </div>
+      <button class="play-btn" id="copyApis" style="margin-top:20px"><i data-lucide="copy"></i>Copiar lista de fontes</button>
+    </div>
+    <div class="outlook reveal">
+      <span class="corner c-tl"></span><span class="corner c-tr"></span><span class="corner c-bl"></span><span class="corner c-br"></span>
+      <div><h4><i data-lucide="cloud-lightning" style="width:20px;height:20px;color:var(--crema-deep);vertical-align:-3px"></i> Clima & safras: o que vigiar</h4><p>A safra 2023 caiu pela bienalidade e o El Niño (seca no Centro-Sul) segurou 2024 em ~54,2 mi de sacas — com <strong>conilon recorde compensando arábica menor</strong>. No radar: transição para La Niña eleva o risco de geada em Minas e no Paraná, e os <strong>certificados de arábica na ICE em mínimos históricos</strong> transformam qualquer susto climático em prêmio de risco sobre o preço. 2025/26 tende a ser safra "cheia" de arábica — mas o clima escreve o último capítulo.</p></div>
+      <div><h4><i data-lucide="lightbulb" style="width:20px;height:20px;color:var(--crema-deep);vertical-align:-3px"></i> Ideia de projeto para a sua comunidade</h4><p>Um <strong>gêmeo digital da safra</strong>: malha IBGE + clima (INMET/ERA5) + bienalidade + preços Cepea em um pipeline que prevê oferta e antecipa picos de preço. Todos os insumos são públicos e gratuitos — o dataset completo está a um <strong>fetch</strong> de distância. Café é o playground perfeito de dados: sazonal, cíclico, climático e delicioso.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter light grainy" id="live">
+  <div class="wrap">
+    <div class="cap-head reveal">
+      <p class="cap-num">Terminal · Dados ao vivo</p>
+      <h2>A bolsa do café <em>não é uma bolsa</em></h2>
+      <p class="cap-lead">O preço do café é decidido por três forças que você pode medir em tempo real, agora, sem pagar por nenhuma API: <strong>o clima sobre as lavouras</strong> (Open-Meteo), <strong>o câmbio</strong> (BCB — o café é cotado em dólar) e <strong>a safra oficial</strong> (IBGE). Abaixo, o <strong>Índice CREMA° de Risco Climático</strong> — calculado ao vivo a partir dos mínimos previstos, chuva e umidade de cada região produtora. <strong>Passe o mouse sobre qualquer card</strong> para uma explicação do indicador.</p>
+    </div>
+    <div class="lv-top reveal">
+      <span class="lv-live"><span class="dot"></span>live</span>
+      <span id="lvStamp">conectando às fontes…</span>
+      <button id="lvRefresh" type="button"><i data-lucide="refresh-cw"></i>Atualizar agora</button>
+    </div>
+    <div class="lv-kpis reveal">
+      <div class="lv-kpi" data-tip-title="Dólar comercial (USD/BRL)" data-tip="Cotação do dólar no mercado comercial — a taxa usada em operações reais de câmbio e exportação. O café é negociado em dólar na bolsa de Nova York: quando o dólar sobe, a receita em reais do produtor e exportador aumenta, o que costuma empurrar o preço interno do café para cima."><span class="lv-klabel">USD / BRL · Banco Central (comercial)</span><b id="lvFx">—</b><span id="lvFxD" class="lv-delta">—</span><small>Dólar em alta = café brasileiro mais caro em reais. O termostato da exportação.</small></div>
+      <div class="lv-kpi" data-tip-title="PTAX — taxa de referência do Banco Central" data-tip="Média das taxas de câmbio negociadas no dia, apurada oficialmente pelo Banco Central. É a referência usada nos contratos de exportação de café para converter dólares em reais — a base do faturamento cambial do setor."><span class="lv-klabel">PTAX · Banco Central</span><b id="lvPtax">—</b><span class="lv-delta" style="color:var(--ink-faint)">fonte oficial BCB</span><small>Taxa de referência dos contratos de exportação.</small></div>
+      <div class="lv-kpi" id="lvAlertKpi" data-tip-title="Regiões em alerta climático" data-tip="Quantas das 7 regiões cafeeiras monitoradas atingiram Índice CREMA° ≥ 50 (de 100). O índice combina seca, risco de geada e calor excessivo. Quanto mais regiões em alerta, maior o risco de safra menor — cenário que historicamente pressiona os preços para cima."><span class="lv-klabel">Regiões em alerta</span><b id="lvAlerts">—</b><small id="lvAlertsSub">Índice CREMA° ≥ 50 de 100</small></div>
+      <div class="lv-kpi" id="lvMinKpi" data-tip-title="Menor mínima prevista (48 h)" data-tip="A menor temperatura mínima prevista nas próximas 48 horas entre todas as regiões monitoradas. Em lavouras de altitude, mínimas abaixo de ~3 °C configuram risco de geada — o evento climático historicamente associado aos maiores saltos no preço do café."><span class="lv-klabel">Menor mínima prevista · 48 h</span><b id="lvMin">—</b><small>Abaixo de 3 °C em lavoura = risco de geada. O susto que move a ICE.</small></div>
+    </div>
+    <div class="lv-grid reveal" id="lvGrid"></div>
+    <div class="lv-two reveal">
+      <div class="lv-card" data-tip-title="Série do dólar (20 pregões)" data-tip="Cotações diárias do dólar comercial divulgadas pelo Banco Central. Exportadores reagem às variações cambiais ajustando preços em reais: acompanhar a tendência da linha ajuda a entender os movimentos do café brasileiro.">
+        <h4>Dólar × últimos 20 pregões</h4>
+        <span class="lv-sub">USD/BRL · Banco Central do Brasil (cotações comerciais diárias)</span>
+        <svg id="lvSpark" viewBox="0 0 300 84"></svg>
+        <p class="lv-status" id="lvSparkNote"></p>
+      </div>
+      <div class="lv-card" data-tip-title="Safra oficial por estado" data-tip="Produção de café por unidade federativa segundo a Pesquisa Agrícola Municipal do IBGE (último ano disponível). Revela a concentração da oferta: Minas Gerais responde por cerca de metade do café do Brasil — quebras lá movem o mercado inteiro.">
+        <h4>Safra por UF — café total</h4>
+        <span class="lv-sub">Produção Agrícola Municipal · IBGE SIDRA (tabela 1613, mil sacas de 60 kg)</span>
+        <div id="lvIbge"></div>
+        <p class="lv-status" id="lvIbgeStatus"></p>
+      </div>
+    </div>
+    <p class="src-note reveal" style="margin-top:22px">Índice CREMA° = max(geada, seca, calor): geada pela mínima prevista (≤2 °C → 85; ≤0 °C → 100), seca por chuva 48 h + umidade + temperatura, calor por máxima atual. Dados educativos com cache local — as fontes primárias são Open-Meteo, BCB e IBGE/PAM.</p>
+  </div>
+</section>
+
+<section class="chapter grainy" id="cafeina">
+  <div class="wrap">
+    <div class="cap-head reveal">
+      <p class="cap-num">Capítulo 07 — As plantas da cafeína</p>
+      <h2>Cinco espécies descobriram <em>o mesmo truque</em></h2>
+      <p class="cap-lead">Cafeína não é invenção do café: é um <strong>pesticida evolutivo</strong> que pelo menos cinco plantas sintetizaram independentemente — e que nós, humanos, aprendemos a extrair, apreciar e ritualizar. Cada uma entrega a molécula com um "coquetel" químico diferente. Clique nas plantas e compare as análises.</p>
+    </div>
+    <div class="plants reveal" id="plantGrid"></div>
+    <div class="caf-cmp reveal">
+      <h3 id="cfName">—</h3>
+      <p id="cfDesc">—</p>
+      <div class="hrow" style="border-top:1px solid var(--line-dark)"><b>Cafeína por dose típica</b><div class="t"><i id="cfBar"></i></div><em id="cfMg">—</em></div>
+      <div class="caf-detail">
+        <div><h4>Coquetel químico distintivo</h4><ul id="cfChem"></ul></div>
+        <div><h4>Como a molécula chega a você</h4><ul id="cfAbs"></ul></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="cap-num" style="margin-bottom:22px">A família das xantinas — três irmãs, três temperamentos</p>
+      <p style="color:var(--ink-dim);max-width:720px;margin-bottom:26px">As três moléculas abaixo diferem apenas na posição dos grupos metila (–CH₃) no anel de xantina — mas o corpo humano as distingue perfeitamente. É química fina: um grupo a mais ou a menos muda potência, metabolismo e efeito.</p>
+      <div class="xant-grid">
+        <div class="xant">
+          <svg viewBox="0 0 280 188" class="mol-card-svg" aria-label="Estrutura molecular da Cafeína (1,3,7-trimetilxantina)">
+            <rect width="280" height="188" rx="10" fill="#F7F1E7" stroke="rgba(181, 122, 51, 0.22)" stroke-width="1.2"/>
+            <pattern id="grid-caf" width="14" height="14" patternUnits="userSpaceOnUse">
+              <circle cx="2" cy="2" r="0.75" fill="rgba(43, 30, 22, 0.07)"/>
+            </pattern>
+            <rect width="280" height="188" rx="10" fill="url(#grid-caf)"/>
+
+            <!-- Anel de Pirimidina (6 membros) -->
+            <line x1="72" y1="60" x2="106" y2="40" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="106" y1="40" x2="140" y2="60" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="140" y1="60" x2="140" y2="100" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="135" y1="66" x2="135" y2="94" stroke="#2B1F17" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="140" y1="100" x2="106" y2="120" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="106" y1="120" x2="72" y2="100" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="72" y1="100" x2="72" y2="60" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+
+            <!-- Anel de Imidazol (5 membros) -->
+            <line x1="140" y1="60" x2="175" y2="48" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="175" y1="48" x2="198" y2="80" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="198" y1="80" x2="175" y2="112" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="192" y1="81" x2="174" y2="106" stroke="#2B1F17" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="175" y1="112" x2="140" y2="100" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+
+            <!-- Carbonila C6=O -->
+            <line x1="103" y1="36" x2="103" y2="23" stroke="#2B1F17" stroke-width="1.5"/>
+            <line x1="109" y1="36" x2="109" y2="23" stroke="#2B1F17" stroke-width="1.5"/>
+            <circle cx="106" cy="15" r="8" fill="#FDF2EE" stroke="#C25E43" stroke-width="1.5"/>
+            <text x="106" y="19" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#C25E43">O</text>
+
+            <!-- Carbonila C2=O -->
+            <line x1="68" y1="97" x2="52" y2="97" stroke="#2B1F17" stroke-width="1.5"/>
+            <line x1="68" y1="103" x2="52" y2="103" stroke="#2B1F17" stroke-width="1.5"/>
+            <circle cx="44" cy="100" r="8" fill="#FDF2EE" stroke="#C25E43" stroke-width="1.5"/>
+            <text x="44" y="104" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#C25E43">O</text>
+
+            <!-- Vértices Nitrogenados (N1, N3, N7, N9) -->
+            <circle cx="72" cy="60" r="8.5" fill="#FFF9F2" stroke="#2B1F17" stroke-width="1.5"/>
+            <text x="72" y="64" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#2B1F17">N</text>
+
+            <circle cx="106" cy="120" r="8.5" fill="#FFF9F2" stroke="#2B1F17" stroke-width="1.5"/>
+            <text x="106" y="124" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#2B1F17">N</text>
+
+            <circle cx="175" cy="48" r="8.5" fill="#FFF9F2" stroke="#2B1F17" stroke-width="1.5"/>
+            <text x="175" y="52" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#2B1F17">N</text>
+
+            <circle cx="175" cy="112" r="8.5" fill="#FFF9F2" stroke="#2B1F17" stroke-width="1.5"/>
+            <text x="175" y="116" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#2B1F17">N</text>
+
+            <!-- Hidrogênio C8-H -->
+            <line x1="198" y1="80" x2="209" y2="80" stroke="#2B1F17" stroke-width="1.5"/>
+            <text x="216" y="83" font-family="IBM Plex Mono" font-size="9.5" font-weight="500" fill="#8E7E70">H</text>
+
+            <!-- Metilas Ativas (N1, N3, N7) -->
+            <line x1="64" y1="54" x2="48" y2="42" stroke="#B57A33" stroke-width="2.2" stroke-linecap="round"/>
+            <rect x="6" y="21" width="40" height="20" rx="5" fill="#B57A33"/>
+            <text x="26" y="35" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="10.5" fill="#FFFFFF">CH₃</text>
+            <circle cx="46" cy="21" r="6" fill="#140E0A"/>
+            <text x="46" y="24" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" font-weight="700" fill="#E5BE8A">1</text>
+
+            <line x1="106" y1="128" x2="106" y2="142" stroke="#B57A33" stroke-width="2.2" stroke-linecap="round"/>
+            <rect x="86" y="142" width="40" height="20" rx="5" fill="#B57A33"/>
+            <text x="106" y="156" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="10.5" fill="#FFFFFF">CH₃</text>
+            <circle cx="126" cy="142" r="6" fill="#140E0A"/>
+            <text x="126" y="145" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" font-weight="700" fill="#E5BE8A">3</text>
+
+            <line x1="182" y1="42" x2="198" y2="30" stroke="#B57A33" stroke-width="2.2" stroke-linecap="round"/>
+            <rect x="198" y="11" width="40" height="20" rx="5" fill="#B57A33"/>
+            <text x="218" y="25" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="10.5" fill="#FFFFFF">CH₃</text>
+            <circle cx="238" cy="11" r="6" fill="#140E0A"/>
+            <text x="238" y="14" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" font-weight="700" fill="#E5BE8A">7</text>
+
+            <!-- Rodapé Científico -->
+            <rect x="12" y="167" width="256" height="16" rx="4" fill="rgba(181, 122, 51, 0.12)" stroke="rgba(181, 122, 51, 0.28)"/>
+            <text x="140" y="179" text-anchor="middle" font-family="IBM Plex Mono" font-size="8.5" font-weight="600" fill="#8A5A14" letter-spacing="0.08em">3× METILAS: N1 · N3 · N7 (TRIMETIL)</text>
+          </svg>
+          <b>Cafeína</b>
+          <span class="xf">1,3,7-trimetilxantina · C₈H₁₀N₄O₂</span>
+          <p>A mais potente no sistema nervoso central. Fontes: café, chá, mate, guaraná, kola. <strong>Efetiva a partir de ~0,5–1 mg/kg</strong> — uma xícara já basta.</p>
+        </div>
+
+        <div class="xant">
+          <svg viewBox="0 0 280 188" class="mol-card-svg" aria-label="Estrutura molecular da Teobromina (3,7-dimetilxantina)">
+            <rect width="280" height="188" rx="10" fill="#F4F6EE" stroke="rgba(107, 142, 78, 0.22)" stroke-width="1.2"/>
+            <pattern id="grid-teo" width="14" height="14" patternUnits="userSpaceOnUse">
+              <circle cx="2" cy="2" r="0.75" fill="rgba(43, 30, 22, 0.07)"/>
+            </pattern>
+            <rect width="280" height="188" rx="10" fill="url(#grid-teo)"/>
+
+            <!-- Anel de Pirimidina (6 membros) -->
+            <line x1="72" y1="60" x2="106" y2="40" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="106" y1="40" x2="140" y2="60" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="140" y1="60" x2="140" y2="100" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="135" y1="66" x2="135" y2="94" stroke="#2B1F17" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="140" y1="100" x2="106" y2="120" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="106" y1="120" x2="72" y2="100" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="72" y1="100" x2="72" y2="60" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+
+            <!-- Anel de Imidazol (5 membros) -->
+            <line x1="140" y1="60" x2="175" y2="48" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="175" y1="48" x2="198" y2="80" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="198" y1="80" x2="175" y2="112" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="192" y1="81" x2="174" y2="106" stroke="#2B1F17" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="175" y1="112" x2="140" y2="100" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+
+            <!-- Carbonila C6=O -->
+            <line x1="103" y1="36" x2="103" y2="23" stroke="#2B1F17" stroke-width="1.5"/>
+            <line x1="109" y1="36" x2="109" y2="23" stroke="#2B1F17" stroke-width="1.5"/>
+            <circle cx="106" cy="15" r="8" fill="#FDF2EE" stroke="#C25E43" stroke-width="1.5"/>
+            <text x="106" y="19" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#C25E43">O</text>
+
+            <!-- Carbonila C2=O -->
+            <line x1="68" y1="97" x2="52" y2="97" stroke="#2B1F17" stroke-width="1.5"/>
+            <line x1="68" y1="103" x2="52" y2="103" stroke="#2B1F17" stroke-width="1.5"/>
+            <circle cx="44" cy="100" r="8" fill="#FDF2EE" stroke="#C25E43" stroke-width="1.5"/>
+            <text x="44" y="104" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#C25E43">O</text>
+
+            <!-- Vértices Nitrogenados (N1, N3, N7, N9) -->
+            <circle cx="72" cy="60" r="8.5" fill="#FFF9F2" stroke="#2B1F17" stroke-width="1.5"/>
+            <text x="72" y="64" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#2B1F17">N</text>
+
+            <circle cx="106" cy="120" r="8.5" fill="#FFF9F2" stroke="#2B1F17" stroke-width="1.5"/>
+            <text x="106" y="124" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#2B1F17">N</text>
+
+            <circle cx="175" cy="48" r="8.5" fill="#FFF9F2" stroke="#2B1F17" stroke-width="1.5"/>
+            <text x="175" y="52" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#2B1F17">N</text>
+
+            <circle cx="175" cy="112" r="8.5" fill="#FFF9F2" stroke="#2B1F17" stroke-width="1.5"/>
+            <text x="175" y="116" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#2B1F17">N</text>
+
+            <!-- Hidrogênio C8-H -->
+            <line x1="198" y1="80" x2="209" y2="80" stroke="#2B1F17" stroke-width="1.5"/>
+            <text x="216" y="83" font-family="IBM Plex Mono" font-size="9.5" font-weight="500" fill="#8E7E70">H</text>
+
+            <!-- Posição N1 DESMETILADA (apenas H) -->
+            <line x1="64" y1="54" x2="50" y2="44" stroke="rgba(43,30,22,0.3)" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <rect x="14" y="23" width="32" height="18" rx="4" fill="rgba(43,30,22,0.05)" stroke="rgba(43,30,22,0.22)" stroke-dasharray="2 2"/>
+            <text x="30" y="36" text-anchor="middle" font-family="IBM Plex Mono" font-weight="600" font-size="10" fill="#8E7E70">H</text>
+            <circle cx="46" cy="23" r="5" fill="#E8DEC9"/>
+            <text x="46" y="26" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" font-weight="700" fill="#6B5947">1</text>
+
+            <!-- Metila em N3 (Ativa) -->
+            <line x1="106" y1="128" x2="106" y2="142" stroke="#6B8E4E" stroke-width="2.2" stroke-linecap="round"/>
+            <rect x="86" y="142" width="40" height="20" rx="5" fill="#6B8E4E"/>
+            <text x="106" y="156" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="10.5" fill="#FFFFFF">CH₃</text>
+            <circle cx="126" cy="142" r="6" fill="#140E0A"/>
+            <text x="126" y="145" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" font-weight="700" fill="#D6E8C3">3</text>
+
+            <!-- Metila em N7 (Ativa) -->
+            <line x1="182" y1="42" x2="198" y2="30" stroke="#6B8E4E" stroke-width="2.2" stroke-linecap="round"/>
+            <rect x="198" y="11" width="40" height="20" rx="5" fill="#6B8E4E"/>
+            <text x="218" y="25" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="10.5" fill="#FFFFFF">CH₃</text>
+            <circle cx="238" cy="11" r="6" fill="#140E0A"/>
+            <text x="238" y="14" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" font-weight="700" fill="#D6E8C3">7</text>
+
+            <!-- Rodapé Científico -->
+            <rect x="12" y="167" width="256" height="16" rx="4" fill="rgba(107, 142, 78, 0.12)" stroke="rgba(107, 142, 78, 0.28)"/>
+            <text x="140" y="179" text-anchor="middle" font-family="IBM Plex Mono" font-size="8.5" font-weight="600" fill="#4B6833" letter-spacing="0.08em">2× METILAS: N3 · N7 (N1 LIVRE)</text>
+          </svg>
+          <b>Teobromina</b>
+          <span class="xf">3,7-dimetilxantina · C₇H₈N₄O₂</span>
+          <p>Vasodilatadora e diurética suave, efeito ~10× mais fraco que a cafeína. Domina o <strong>cacau</strong>: o "calor bom" do chocolate quente é ela.</p>
+        </div>
+
+        <div class="xant">
+          <svg viewBox="0 0 280 188" class="mol-card-svg" aria-label="Estrutura molecular da Teofilina (1,3-dimetilxantina)">
+            <rect width="280" height="188" rx="10" fill="#F0F4F7" stroke="rgba(74, 124, 153, 0.22)" stroke-width="1.2"/>
+            <pattern id="grid-teof" width="14" height="14" patternUnits="userSpaceOnUse">
+              <circle cx="2" cy="2" r="0.75" fill="rgba(43, 30, 22, 0.07)"/>
+            </pattern>
+            <rect width="280" height="188" rx="10" fill="url(#grid-teof)"/>
+
+            <!-- Anel de Pirimidina (6 membros) -->
+            <line x1="72" y1="60" x2="106" y2="40" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="106" y1="40" x2="140" y2="60" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="140" y1="60" x2="140" y2="100" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="135" y1="66" x2="135" y2="94" stroke="#2B1F17" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="140" y1="100" x2="106" y2="120" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="106" y1="120" x2="72" y2="100" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="72" y1="100" x2="72" y2="60" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+
+            <!-- Anel de Imidazol (5 membros) -->
+            <line x1="140" y1="60" x2="175" y2="48" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="175" y1="48" x2="198" y2="80" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="198" y1="80" x2="175" y2="112" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+            <line x1="192" y1="81" x2="174" y2="106" stroke="#2B1F17" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="175" y1="112" x2="140" y2="100" stroke="#2B1F17" stroke-width="2" stroke-linecap="round"/>
+
+            <!-- Carbonila C6=O -->
+            <line x1="103" y1="36" x2="103" y2="23" stroke="#2B1F17" stroke-width="1.5"/>
+            <line x1="109" y1="36" x2="109" y2="23" stroke="#2B1F17" stroke-width="1.5"/>
+            <circle cx="106" cy="15" r="8" fill="#FDF2EE" stroke="#C25E43" stroke-width="1.5"/>
+            <text x="106" y="19" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#C25E43">O</text>
+
+            <!-- Carbonila C2=O -->
+            <line x1="68" y1="97" x2="52" y2="97" stroke="#2B1F17" stroke-width="1.5"/>
+            <line x1="68" y1="103" x2="52" y2="103" stroke="#2B1F17" stroke-width="1.5"/>
+            <circle cx="44" cy="100" r="8" fill="#FDF2EE" stroke="#C25E43" stroke-width="1.5"/>
+            <text x="44" y="104" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#C25E43">O</text>
+
+            <!-- Vértices Nitrogenados (N1, N3, N7, N9) -->
+            <circle cx="72" cy="60" r="8.5" fill="#FFF9F2" stroke="#2B1F17" stroke-width="1.5"/>
+            <text x="72" y="64" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#2B1F17">N</text>
+
+            <circle cx="106" cy="120" r="8.5" fill="#FFF9F2" stroke="#2B1F17" stroke-width="1.5"/>
+            <text x="106" y="124" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#2B1F17">N</text>
+
+            <circle cx="175" cy="48" r="8.5" fill="#FFF9F2" stroke="#2B1F17" stroke-width="1.5"/>
+            <text x="175" y="52" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#2B1F17">N</text>
+
+            <circle cx="175" cy="112" r="8.5" fill="#FFF9F2" stroke="#2B1F17" stroke-width="1.5"/>
+            <text x="175" y="116" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="11" fill="#2B1F17">N</text>
+
+            <!-- Hidrogênio C8-H -->
+            <line x1="198" y1="80" x2="209" y2="80" stroke="#2B1F17" stroke-width="1.5"/>
+            <text x="216" y="83" font-family="IBM Plex Mono" font-size="9.5" font-weight="500" fill="#8E7E70">H</text>
+
+            <!-- Metila em N1 (Ativa) -->
+            <line x1="64" y1="54" x2="48" y2="42" stroke="#4A7C99" stroke-width="2.2" stroke-linecap="round"/>
+            <rect x="6" y="21" width="40" height="20" rx="5" fill="#4A7C99"/>
+            <text x="26" y="35" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="10.5" fill="#FFFFFF">CH₃</text>
+            <circle cx="46" cy="21" r="6" fill="#140E0A"/>
+            <text x="46" y="24" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" font-weight="700" fill="#C2E0F2">1</text>
+
+            <!-- Metila em N3 (Ativa) -->
+            <line x1="106" y1="128" x2="106" y2="142" stroke="#4A7C99" stroke-width="2.2" stroke-linecap="round"/>
+            <rect x="86" y="142" width="40" height="20" rx="5" fill="#4A7C99"/>
+            <text x="106" y="156" text-anchor="middle" font-family="IBM Plex Mono" font-weight="700" font-size="10.5" fill="#FFFFFF">CH₃</text>
+            <circle cx="126" cy="142" r="6" fill="#140E0A"/>
+            <text x="126" y="145" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" font-weight="700" fill="#C2E0F2">3</text>
+
+            <!-- Posição N7 DESMETILADA (apenas H) -->
+            <line x1="182" y1="42" x2="196" y2="32" stroke="rgba(43,30,22,0.3)" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <rect x="196" y="13" width="32" height="18" rx="4" fill="rgba(43,30,22,0.05)" stroke="rgba(43,30,22,0.22)" stroke-dasharray="2 2"/>
+            <text x="212" y="26" text-anchor="middle" font-family="IBM Plex Mono" font-weight="600" font-size="10" fill="#8E7E70">H</text>
+            <circle cx="228" cy="13" r="5" fill="#E8DEC9"/>
+            <text x="228" y="16" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" font-weight="700" fill="#6B5947">7</text>
+
+            <!-- Rodapé Científico -->
+            <rect x="12" y="167" width="256" height="16" rx="4" fill="rgba(74, 124, 153, 0.12)" stroke="rgba(74, 124, 153, 0.28)"/>
+            <text x="140" y="179" text-anchor="middle" font-family="IBM Plex Mono" font-size="8.5" font-weight="600" fill="#2E5570" letter-spacing="0.08em">2× METILAS: N1 · N3 (N7 LIVRE)</text>
+          </svg>
+          <b>Teofilina</b>
+          <span class="xf">1,3-dimetilxantina · C₇H₈N₄O₂</span>
+          <p>Broncodilatadora potente — <strong>foi medicamento padrão para asma por décadas</strong>. Aparece em traços no chá e na erva-mate, e como metabólito minoritário da cafeína.</p>
+        </div>
+      </div>
+      <p class="src-note" style="margin-top:16px">Composições por dose: USDA FoodData Central · EFSA (2015). Semente de guaraná: 2–4,5% de cafeína (maior teor entre as plantas de uso humano) vs. ~1,2–1,5% na arábica e ~2,0–2,7% na robusta.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter light grainy" id="futuro">
+  <div class="wrap">
+    <div class="cap-head reveal">
+      <p class="cap-num">Capítulo 08 — O futuro</p>
+      <h2>A quarta onda é <em>cognitiva</em></h2>
+      <p class="cap-lead">A lavoura que era pura intuição hoje lê sensores. O barista calibra com apps. A torra tem curva, planilha e inteligência artificial. IA, IoT e Indústria 4.0 não estão "chegando" ao café — já moram nele.</p>
+    </div>
+    <figure class="ph plx-w reveal" style="height:clamp(220px,30vw,360px);margin-bottom:clamp(44px,5.5vw,64px)"><img class="plx" loading="lazy" src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop" alt="Tecnologia" onerror="phArt(this,'A eletrônica virou insumo agrícola')"><figcaption><b>A eletrônica virou insumo agrícola</b>Sensor, telemetria e modelo preditivo agora entram na conta de custo ao lado de adubo e mão de obra — e quem domina dados, domina margem.</figcaption><span class="cred">Foto · Unsplash</span></figure>
+    <div class="axis-list">
+      <div class="axis-item reveal"><span class="ax-n">01</span><div>
+        <h3><i data-lucide="sprout"></i>A lavoura que lê os próprios dados</h3>
+        <p>No Cerrado, <strong>quase toda a colheita já é mecanizada</strong>: colheitadeiras com GPS registram a produtividade de cada talhão enquanto colhem. Drones leem a saúde da planta por espectro (NDVI) e flagram estresse hídrico semanas antes dos seus olhos. A irrigação é disparada por <strong>sensores de umidade do solo</strong> — não por calendário. Modelos de machine learning cruzam clima, solo e histórico para <strong>prever floração, produtividade e o ataque da broca-do-café antes que aconteça</strong>.</p>
+        <div class="happening"><span><i data-lucide="check"></i>Seletoras ópticas com visão computacional</span><span><i data-lucide="check"></i>Estações meteorológicas IoT</span><span><i data-lucide="check"></i>Variedades resistentes (Arara, H1, IPR)</span></div>
+      </div></div>
+      <div class="axis-item reveal"><span class="ax-n">02</span><div>
+        <h3><i data-lucide="flask-conical"></i>Fermentação como laboratório</h3>
+        <p>A pós-colheita virou experimento controlado: tanques monitorados por <strong>sensores de pH, Brix e temperatura</strong> registram a curva completa da fermentação — e esse "certificado de processo" viaja junto com o lote. Os cafés anaeróbios que dominam os pódios do Cup of Excellence são, na prática, <strong>biotecnologia de barril</strong>. Na secagem, terreiros elétricos e torres ajustam umidade em tempo real.</p>
+        <div class="happening"><span><i data-lucide="check"></i>Anaeróbios premiados</span><span><i data-lucide="check"></i>Terreiros elétricos com controle de umidade</span><span><i data-lucide="check"></i>Curvas de fermentação como ativo do lote</span></div>
+      </div></div>
+      <div class="axis-item reveal"><span class="ax-n">03</span><div>
+        <h3><i data-lucide="flame"></i>Torra e espresso sob telemetria</h3>
+        <p>A torra moderna é digital: perfil de temperatura, curva de taxa de subida (RoR) e software que compara cada lote com milhares de outros — <strong>a IA sugere ajuste de carga e gás antes de o torrador perceber o erro</strong>. Na cafeteria, máquinas espresso conectadas registram pressão e temperatura de cada shot; moinhos autoajustáveis compensam <strong>umidade e densidade do grão sozinhos</strong> entre turnos. O barista não foi substituído: foi promovido a piloto de instrumentos.</p>
+        <div class="happening"><span><i data-lucide="check"></i>Perfis de torra em nuvem</span><span><i data-lucide="check"></i>Telemetria por shot</span><span><i data-lucide="check"></i>Moinhos com compensação automática</span></div>
+      </div></div>
+      <div class="axis-item reveal"><span class="ax-n">04</span><div>
+        <h3><i data-lucide="qr-code"></i>O grão transparente — e o horizonte</h3>
+        <p>QR code no pacote devolve o <strong>nome do produtor, altitude e dia da torra</strong>; rastreabilidade que era luxo virou requisito — com blockchain já usado por grandes exportadoras para certificar origem. No horizonte da próxima década: <strong>gêmeos digitais de talhões</strong> simulando fisiologia da planta (a fronteira perfeita para quem trabalha com cidades inteligentes), <strong>café cultivado em células</strong> — startups já submeteram "café de laboratório" a avaliações cegas —, variedades adaptadas ao calor e o Brasil exportando mais <strong>valor torrado e especial</strong>, menos saca crua.</p>
+        <div class="happening"><span><i data-lucide="check"></i>Rastreabilidade QR / blockchain</span><span><i data-lucide="check"></i>Gêmeos digitais de talhão</span><span><i data-lucide="check"></i>Café de cultivo celular em testes</span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-sec grainy" id="indice">
+  <img class="cta-bg" src="https://images.unsplash.com/photo-1524350876685-274059332603?q=80&w=1600&auto=format&fit=crop" alt="" onerror="this.remove()">
+  <div class="cta-veil"></div>
+  <div class="wrap">
+    <div class="cta-header reveal">
+      <span class="cta-badge"><i data-lucide="compass"></i> CREMA° Research Index</span>
+      <h2>Da semente ao neurônio <em>em 9 capítulos</em></h2>
+      <p class="cta-lead">Um atlas editorial aberto que cruza história, neurociência, termodinâmica de extração, economia cafeeira e biotecnologia da 4ª onda.</p>
+    </div>
+
+    <div class="research-grid">
+      <a href="#origem" class="research-card reveal" style="--d:0s">
+        <div>
+          <span class="rc-tag">01–02 · Território</span>
+          <h4>História & Terroirs</h4>
+          <p>Nove séculos de dispersão global e a malha cartográfica oficial do IBGE com terroirs brasileiros.</p>
+        </div>
+        <span class="rc-link">Explorar capítulos <i data-lucide="arrow-right"></i></span>
+      </a>
+
+      <a href="#neuro" class="research-card reveal" style="--d:0.08s">
+        <div>
+          <span class="rc-tag">03–04 · Farmacologia</span>
+          <h4>Neurociência & Vício</h4>
+          <p>Cinética molecular da cafeína, antagonismo nos receptores A₁/A₂A e critérios diagnósticos do DSM-5.</p>
+        </div>
+        <span class="rc-link">Ver cinética cerebral <i data-lucide="arrow-right"></i></span>
+      </a>
+
+      <a href="#metodos" class="research-card reveal" style="--d:0.16s">
+        <div>
+          <span class="rc-tag">05–06 · Termodinâmica</span>
+          <h4>Métodos & Data Lab</h4>
+          <p>Simulador físico de extração SCA (18–22%) e séries históricas de produção, consumo e cotações.</p>
+        </div>
+        <span class="rc-link">Abrir simulações <i data-lucide="arrow-right"></i></span>
+      </a>
+
+      <a href="#futuro" class="research-card reveal" style="--d:0.24s">
+        <div>
+          <span class="rc-tag">07–08 · Biotecnologia</span>
+          <h4>Cafeína & 4ª Onda</h4>
+          <p>Árvore filogenética das metilxantinas, telemetria por shot, fermentação controlada e agricultura IoT.</p>
+        </div>
+        <span class="rc-link">Ver futuro cognitivo <i data-lucide="arrow-right"></i></span>
+      </a>
+    </div>
+
+    <div class="cta-actions reveal">
+      <a class="btn btn-solid" href="#top">Voltar ao topo <i data-lucide="arrow-up"></i></a>
+      <a class="btn btn-ghost" href="#laboratorio">Laboratório de Extração <i data-lucide="flask-conical"></i></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <!-- Bloco Editorial: Por trás do CREMA° -->
+    <section class="foot-creator-card" aria-labelledby="creatorTitle">
+      <div class="fcc-main">
+        <span class="fcc-eyebrow">Proveniência Intelectual</span>
+        <h4 class="fcc-title" id="creatorTitle">Por trás do CREMA°</h4>
+        <p class="fcc-text">O CREMA° é um projeto interdisciplinar idealizado e desenvolvido por <strong>Eric Pimentel</strong>, explorando as conexões entre café, neurociência, dados, tecnologia e comportamento humano.</p>
+      </div>
+      <div class="fcc-actions">
+        <span class="fcc-role">Conceito, pesquisa &amp; desenvolvimento</span>
+        <div class="fcc-links">
+          <a href="https://www.linkedin.com/in/ericpimentel-dados/" target="_blank" rel="noopener noreferrer" class="fcc-btn" aria-label="LinkedIn de Eric Pimentel">
+            <i data-lucide="linkedin"></i>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/enps2015" target="_blank" rel="noopener noreferrer" class="fcc-btn" aria-label="GitHub de Eric Pimentel">
+            <i data-lucide="github"></i>
+            <span>GitHub</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="#top">crema<span class="deg">°</span></a>
+        <p>Atlas editorial e científico do café — integrando história socioeconômica, farmacodinâmica molecular, cartografia oficial e análise de séries temporais.</p>
+        <span class="foot-tagline">Pesquisa, Dados & Cultura Cafeeira</span>
+        <div class="foot-author-line">
+          <span>Idealizado e desenvolvido por <strong>Eric Pimentel</strong></span>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Índice do Atlas</h5>
+        <ul>
+          <li><a href="#origem">01 · Origem & História</a></li>
+          <li><a href="#brasil">02 · Brasil & Terroirs</a></li>
+          <li><a href="#neuro">03 · Neurociência</a></li>
+          <li><a href="#vicio">04 · O Mito do Vício</a></li>
+          <li><a href="#metodos">05 · Métodos de Preparo</a></li>
+          <li><a href="#datalab">06 · Data Lab & Séries</a></li>
+          <li><a href="#cafeina">07 · Plantas da Cafeína</a></li>
+          <li><a href="#futuro">08 · Quarta Onda Cognitiva</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Módulos & Lab</h5>
+        <ul>
+          <li><a href="#laboratorio">Laboratório SCA <span class="badge">Interativo</span></a></li>
+          <li><a href="#neuro">Corrida pelo Receptor <span class="badge">Simulação</span></a></li>
+          <li><a href="#doseLab">Painel Farmacocinético</a></li>
+          <li><a href="#brasil">Mapa Temático IBGE</a></li>
+          <li><a href="#live">Terminal Live <span class="badge">Tempo Real</span></a></li>
+          <li><a href="#roastSim">Simulador de Torra</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Fontes & Dados</h5>
+        <ul>
+          <li><a href="https://servicodados.ibge.gov.br" target="_blank" rel="noopener">Malha Cartográfica · IBGE</a></li>
+          <li><a href="https://open-meteo.com" target="_blank" rel="noopener">Telemetria Climática · Open-Meteo</a></li>
+          <li><a href="https://www.bcb.gov.br/estabilidadefinanceira/consultaserie" target="_blank" rel="noopener">Câmbio & PTAX · Banco Central</a></li>
+          <li><a href="https://www.conab.gov.br" target="_blank" rel="noopener">Safras & Levantamento · Conab</a></li>
+          <li><a href="https://www.ico.org" target="_blank" rel="noopener">Estatísticas Globais · ICO</a></li>
+          <li><a href="https://unsplash.com" target="_blank" rel="noopener">Acervo Fotográfico · Unsplash</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>CREMA° © 2026 · Idealizado e desenvolvido por <strong>Eric Pimentel</strong></span>
+      <span>Cartografia oficial do IBGE · Séries temporais do BCB e Conab · Metodologia aberta</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" role="status"><i data-lucide="check"></i><span id="toastMsg"></span></div>
+
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>

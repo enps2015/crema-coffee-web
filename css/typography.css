@@ -1,0 +1,72 @@
+.mono {
+  font-family: var(--f-mono);
+}
+
+.cap-num {
+  font-family: var(--f-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--crema-deep);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.chapter:not(.light) .cap-num {
+  color: var(--crema);
+}
+
+.cap-num::after {
+  content: "";
+  flex: 0 0 48px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+.cap-head {
+  max-width: 840px;
+  margin-bottom: clamp(48px, 6vw, 80px);
+}
+
+.cap-head h2 {
+  font-family: var(--f-disp);
+  font-weight: 420;
+  font-size: clamp(37px, 4.8vw, 62px);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+}
+
+.cap-head h2 em {
+  font-style: italic;
+  font-weight: 640;
+  color: var(--crema-deep);
+}
+
+.chapter:not(.light) .cap-head h2 em {
+  color: var(--crema);
+}
+
+.cap-lead {
+  margin-top: 22px;
+  font-size: 17.5px;
+  max-width: 680px;
+  color: var(--ink-dark-dim);
+}
+
+.chapter:not(.light) .cap-lead {
+  color: var(--ink-dim);
+}
+
+.src-note {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  line-height: 1.6;
+}
+
+.light .src-note {
+  color: var(--ink-dark-dim);
+}

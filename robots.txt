@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Canonical Sitemap
+Sitemap: https://enps2015.github.io/crema-coffee-web/sitemap.xml

@@ -1,0 +1,119 @@
+.ph {
+  position: relative;
+  border-radius: var(--rad-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  margin: 0;
+}
+
+.light .ph {
+  border-color: var(--line-dark);
+}
+
+.ph img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s var(--ease);
+}
+
+.ph:hover img {
+  transform: scale(1.03);
+}
+
+.ph figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 44px 22px 16px;
+  background: linear-gradient(180deg, transparent, rgba(14, 10, 7, 0.88));
+  color: var(--ink);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.ph figcaption b {
+  font-family: var(--f-disp);
+  font-style: italic;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.ph .cred {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-family: var(--f-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  color: rgba(243, 235, 221, 0.65);
+  background: rgba(14, 10, 7, 0.45);
+  padding: 3px 8px;
+  border-radius: 99px;
+}
+
+/* ==========================================================================
+   CREMA° — Standard Dark Box & Card Typography
+   Reference: .m-panel (Gold standard dark card)
+   ========================================================================== */
+
+.m-panel,
+.lab,
+.region-panel,
+.proc,
+.research-card,
+.gene,
+.outlook,
+.face.back {
+  background: var(--espresso-2);
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.m-panel h3,
+.lab h3,
+.region-panel h3,
+.proc h4,
+.research-card h4,
+.gene h4,
+.outlook h4,
+.face.back h4 {
+  font-family: var(--f-disp);
+  color: var(--paper) !important;
+}
+
+.m-panel .story,
+.m-panel p,
+.lab p,
+.region-panel p,
+.proc p,
+.research-card p,
+.gene p,
+.outlook p,
+.face.back p {
+  color: var(--ink-dim) !important;
+}
+
+.m-panel p strong, .m-panel p b,
+.lab p strong, .lab p b,
+.region-panel p strong, .region-panel p b,
+.proc p strong, .proc p b,
+.research-card p strong, .research-card p b,
+.gene p strong, .gene p b,
+.outlook p strong, .outlook p b,
+.face.back p strong, .face.back p b {
+  color: var(--paper) !important;
+}
+
+.m-panel .m-fam,
+.region-panel .rp-tag,
+.research-card .rc-tag,
+.face.back .f-tag,
+.gene b {
+  font-family: var(--f-mono);
+  color: var(--crema) !important;
+  text-transform: uppercase;
+}

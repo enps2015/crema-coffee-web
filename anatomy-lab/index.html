@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CREMA° Anatomy 3D Lab — Experiência Ghost Anatomy com carregamento progressivo sob demanda e dados anatômicos HuBMAP CCF.">
+  <title>CREMA° Anatomy 3D Lab · Ghost Anatomy & Progressive Loading</title>
+  <link rel="icon" href="../favicon.svg">
+  <link rel="stylesheet" href="./css/anatomy-lab.css">
+  <script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "../js/vendor/three/three.module.js",
+      "three/addons/": "../js/vendor/three/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Header da Bancada Experimental -->
+  <header class="lab-header">
+    <div class="lab-brand">
+      <a href="../index.html" class="lab-logo">crema<span class="deg">°</span></a>
+      <span class="lab-badge">Anatomy 3D Lab · FASE C Hardening</span>
+    </div>
+    <div class="lab-nav-actions">
+      <a href="../index.html#neuro" class="btn-back"><i data-lucide="arrow-left"></i> Voltar ao Atlas CREMA°</a>
+    </div>
+  </header>
+
+  <!-- Corpo Principal do Laboratório -->
+  <main class="lab-main">
+
+    <!-- Introdução e Seletor de Modo -->
+    <section class="lab-intro">
+      <div class="lab-intro-text">
+        <h1>Ghost Anatomy & Progressive 3D Pipeline</h1>
+        <p>Bancada experimental de validação e endurecimento arquitetural. Estratégia de <strong>carregamento progressivo sob demanda</strong>, silhueta somática <em>Ghost Anatomy</em>, resolução do tópico neuromuscular e telemetria de produção.</p>
+      </div>
+      <div class="lab-controls-bar">
+        <button class="view-mode-btn active" id="btnMode3D" type="button"><i data-lucide="box"></i> Ghost 3D Lab</button>
+        <button class="view-mode-btn" id="btnMode2D" type="button"><i data-lucide="scan"></i> Fallback 2D (SVG)</button>
+      </div>
+    </section>
+
+    <!-- Grade Principal: Dock Lateral + Viewport 3D + Painel Anatômico -->
+    <div class="lab-grid">
+      
+      <!-- 1. Dock Lateral de Navegação Anatômica (Sempre visível a olho) -->
+      <nav class="organ-dock" id="organDock" aria-label="Navegador de Órgãos e Sistemas">
+        <div class="dock-header">
+          <span class="dock-eyebrow">SISTEMAS & ÓRGÃOS</span>
+          <span class="dock-hint">Clique para navegar</span>
+        </div>
+
+        <div class="dock-items">
+          <button class="organ-chip active loaded" data-organ="heart" type="button" id="chip-heart">
+            <span class="chip-dot"></span>
+            <div class="chip-text">
+              <span class="chip-title">Coração</span>
+              <span class="chip-sub">Cardiovascular</span>
+            </div>
+          </button>
+
+          <button class="organ-chip" data-organ="brain" type="button" id="chip-brain">
+            <span class="chip-dot"></span>
+            <div class="chip-text">
+              <span class="chip-title">Cérebro</span>
+              <span class="chip-sub">SNC / Cognição</span>
+            </div>
+          </button>
+
+          <button class="organ-chip" data-organ="lungs" type="button" id="chip-lungs">
+            <span class="chip-dot"></span>
+            <div class="chip-text">
+              <span class="chip-title">Pulmões</span>
+              <span class="chip-sub">Respiratório</span>
+            </div>
+          </button>
+
+          <button class="organ-chip" data-organ="liver" type="button" id="chip-liver">
+            <span class="chip-dot"></span>
+            <div class="chip-text">
+              <span class="chip-title">Fígado</span>
+              <span class="chip-sub">Hepático / CYP1A2</span>
+            </div>
+          </button>
+
+          <button class="organ-chip" data-organ="kidneys" type="button" id="chip-kidneys">
+            <span class="chip-dot"></span>
+            <div class="chip-text">
+              <span class="chip-title">Rins</span>
+              <span class="chip-sub">Renal / eGFR</span>
+            </div>
+          </button>
+
+          <button class="organ-chip" data-organ="intestines" type="button" id="chip-intestines">
+            <span class="chip-dot"></span>
+            <div class="chip-text">
+              <span class="chip-title">Intestinos</span>
+              <span class="chip-sub">Enteral / Tmax</span>
+            </div>
+          </button>
+
+          <button class="organ-chip" data-organ="muscles" type="button" id="chip-muscles">
+            <span class="chip-dot"></span>
+            <div class="chip-text">
+              <span class="chip-title">Músculos</span>
+              <span class="chip-sub">Somático / RyR1</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="dock-footer">
+          <button class="dock-action-btn" id="btnShowAll" type="button">
+            <i data-lucide="eye"></i> Mostrar Todos
+          </button>
+        </div>
+      </nav>
+
+      <!-- 2. Card do Viewport 3D -->
+      <section class="viewport-card">
+        <span class="corner c-tl"></span>
+        <span class="corner c-tr"></span>
+        <span class="corner c-bl"></span>
+        <span class="corner c-br"></span>
+
+        <!-- Top Bar Overlay -->
+        <div class="viewport-top">
+          <div class="viewport-tag" id="viewportStatus">
+            <span class="pulse-dot"></span> Ghost Anatomy 3D · Lazy Loading Ativo
+          </div>
+          <div class="viewport-actions">
+            <button class="action-btn" id="btnBodyGuide" type="button" title="Alternar contorno somático Ghost Shell"><i data-lucide="user-check"></i> Ghost Shell: ON</button>
+            <button class="action-btn" id="btnLighting" type="button" title="Alternar perfil de iluminação"><i data-lucide="sun"></i> Luz Editorial</button>
+            <button class="action-btn" id="btnResetCam" type="button" title="Redefinir visualização para visão geral"><i data-lucide="rotate-ccw"></i> Visão Geral</button>
+          </div>
+        </div>
+
+        <!-- 3D Canvas Container -->
+        <div class="canvas-wrapper" id="canvasWrapper">
+          <!-- O canvas WebGL é inserido aqui dinamicamente -->
+        </div>
+
+        <!-- Fallback 2D Container -->
+        <div class="fallback-wrapper" id="fallbackWrapper">
+          <!-- O SVG 2D é renderizado aqui dinamicamente se o 3D for desativado -->
+        </div>
+
+        <!-- Loader Spinner Overlay -->
+        <div class="viewport-loader" id="viewportLoader">
+          <div class="spinner"></div>
+          <span class="loader-msg" id="loaderMsg">Carregando Coração (Órgão Prioritário)...</span>
+        </div>
+
+        <!-- Bottom Controls Overlay -->
+        <div class="viewport-bottom">
+          <span class="hint-pill"><i data-lucide="orbit"></i> Arraste para orbitar · Scroll para zoom · Clique no órgão para isolar</span>
+          <span class="hint-pill">Origem: HuBMAP CCF (CC BY 4.0)</span>
+        </div>
+      </section>
+
+      <!-- 3. Painel Científico Informativo -->
+      <aside class="info-card">
+        <span class="corner c-tl"></span>
+        <span class="corner c-tr"></span>
+        <span class="corner c-bl"></span>
+        <span class="corner c-br"></span>
+
+        <div>
+          <span class="organ-category" id="organCat">Sistema Cardiovascular · Miocárdio & Nó Sinoatrial</span>
+          <h2 class="organ-title" id="organTitle">Coração — Cronotropismo, Inotropismo e Tolerância</h2>
+          <span class="hubmap-badge" id="organModelBadge">3d-vh-m-heart.glb (Visible Human Male / HuBMAP CCF v1.3)</span>
+          <span class="evidence-badge" id="organEvidenceBadge">Nível 1 — Bem suportada (Meta-análises e Coortes Prospectivas)</span>
+
+          <!-- Tags do Órgão -->
+          <div class="organ-tags" id="organTags">
+            <!-- Populado dinamicamente -->
+          </div>
+
+          <!-- Descrição Científica -->
+          <p class="organ-desc" id="organDesc">
+            <!-- Populado dinamicamente -->
+          </p>
+
+          <!-- Callout de Efeito da Cafeína -->
+          <div class="caffeine-callout" id="organCaffeine">
+            <!-- Populado dinamicamente -->
+          </div>
+
+          <!-- Métricas Farmacológicas -->
+          <div class="organ-metrics" id="organMetrics">
+            <!-- Populado dinamicamente -->
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- Telemetria em Tempo Real de Produção -->
+    <section class="telemetry-strip">
+      <div class="tele-item">
+        <span class="tele-label">Contexto Gráfico</span>
+        <span class="tele-value" id="teleGlVersion">Detectando...</span>
+      </div>
+      <div class="tele-item">
+        <span class="tele-label">GPU Renderer</span>
+        <span class="tele-value" id="teleGlRenderer">Detectando...</span>
+      </div>
+      <div class="tele-item">
+        <span class="tele-label">1º Render (TTFR)</span>
+        <span class="tele-value" id="teleTtfr">—</span>
+      </div>
+      <div class="tele-item">
+        <span class="tele-label">Acervo no Cache</span>
+        <span class="tele-value" id="teleCacheCount">1 / 6 GLBs</span>
+      </div>
+      <div class="tele-item">
+        <span class="tele-label">Payload Transferido</span>
+        <span class="tele-value" id="teleBytesLoaded">—</span>
+      </div>
+      <div class="tele-item">
+        <span class="tele-label">Triângulos Ativos</span>
+        <span class="tele-value" id="teleTriangles">—</span>
+      </div>
+      <div class="tele-item">
+        <span class="tele-label">Taxa de Quadros</span>
+        <span class="tele-value" id="teleFps">60 FPS</span>
+      </div>
+      <div class="tele-item">
+        <span class="tele-label">Draw Calls</span>
+        <span class="tele-value" id="teleDrawCalls">—</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Rodapé Institucional e Atribuição de Licenças -->
+  <footer class="lab-footer">
+    <div style="max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:6px;font-size:11px;color:var(--ink-faint)">
+      <div>
+        <strong>Atribuição HuBMAP CCF 3D Reference Object Library:</strong> Modelos anatômicos desenvolvidos pelo NIH Human Biomolecular Atlas Program (HuBMAP), National Library of Medicine (Visible Human Project) e Allen Institute for Brain Science. Licenciados sob <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color:var(--crema)">Creative Commons Attribution 4.0 International (CC BY 4.0)</a>.
+      </div>
+      <div>
+        CREMA° Anatomy 3D Lab · Ambiente de Hardening e Validação Isolada · Aplicação principal CREMA° 100% preservada e imutável.
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="./js/anatomy-lab.js"></script>
+</body>
+</html>

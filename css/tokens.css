@@ -1,0 +1,41 @@
+:root {
+  /* Palette: Coffee & Paper */
+  --espresso: #14100C;
+  --espresso-2: #1D1712;
+  --espresso-3: #262019;
+  --paper: #F3EBDD;
+  --ink: #E9DFCE;
+  --ink-dim: #A5937B;
+  --ink-faint: #6E5F4D;
+  --ink-dark: #211710;
+  --ink-dark-dim: #6B5947;
+  /* Semantic Typography Tokens (Default / Dark Mode) */
+  --text-primary: var(--ink);
+  --text-secondary: var(--ink-dim);
+  --text-muted: var(--ink-faint);
+  --text-accent: var(--crema);
+  --text-leaf: var(--leaf);
+  --text-leaf-border: rgba(138, 155, 110, 0.4);
+
+  /* Accents */
+  --crema: #D9A05B;
+  --crema-deep: #B57A33;
+  --crema-soft: #E8BE85;
+  --cherry: #C25E43;
+  --leaf: #8A9B6E;
+  --leaf-deep: #5F7048;
+
+  /* Borders & Rules */
+  --line: rgba(233, 223, 206, 0.14);
+  --line-dark: rgba(33, 23, 16, 0.16);
+
+  /* Typography */
+  --f-disp: 'Fraunces', Georgia, serif;
+  --f-body: 'Instrument Sans', sans-serif;
+  --f-mono: 'IBM Plex Mono', monospace;
+
+  /* Geometry & Timing */
+  --rad: 14px;
+  --rad-lg: 22px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
