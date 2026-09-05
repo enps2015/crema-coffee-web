@@ -149,52 +149,6 @@ O projeto foi projetado para carregamento instantâneo e eficiência energética
 
 ---
 
-## 📊 Project & Engineering Metrics
-
-### 🧬 Engineering Metrics (Verificáveis no Código-Fonte)
-
-| Indicador Técnico | Métrica Real | Fonte no Repositório |
-| :--- | :---: | :--- |
-| **Módulos JavaScript (ESM)** | **37 arquivos** (~4.940 LOC) | `/js/modules/`, `/js/services/`, `/js/utils/`, `/js/data/` |
-| **Folhas de Estilo (CSS)** | **25 arquivos** (~5.644 LOC) | `/css/components/`, `/css/sections/`, `/css/tokens.css` |
-| **Dependências npm em Runtime** | **0 dependências** | Código vanilla nativo com execução direta no navegador |
-| **Modelos Anatômicos 3D** | **7 órgãos + malha somática** | `/assets/models/hubmap/` (HuBMAP CCF Library) |
-| **Tamanho Original dos Modelos 3D** | **31,22 MB** | `/assets/models/hubmap/originals/` |
-| **Tamanho Otimizado com Draco** | **4,77 MB** | `/assets/models/hubmap/` |
-| **Eficiência da Compressão 3D** | **84,7% de redução** | Comparação direta byte-a-byte |
-
-#### Tabela de Compressão das Malhas Anatômicas (Google Draco):
-
-| Órgão / Estrutura Anatômica | Original (GLB) | Otimizado (Draco) | Redução |
-| :--- | :---: | :---: | :---: |
-| **Pulmões** (`lungs.glb`) | 10,44 MB | 0,80 MB | **-92,3%** |
-| **Coração** (`heart.glb`) | 3,88 MB | 0,41 MB | **-89,6%** |
-| **Fígado** (`liver.glb`) | 1,08 MB | 0,18 MB | **-83,4%** |
-| **Rins** (`kidney_l.glb` / `kidney_r.glb`) | 2,95 MB | 0,50 MB | **-83,1%** |
-| **Intestinos** (`small_intestine` / `large_intestine`) | 1,25 MB | 0,23 MB | **-81,8%** |
-| **Cérebro** (`brain.glb`) | 11,43 MB | 2,44 MB | **-78,6%** |
-| **Contorno Somático** (`body_ref.glb`) | 0,20 MB | 0,21 MB | — |
-| **Total do Atlas Anatômico** | **31,22 MB** | **4,77 MB** | **-84,7%** |
-
----
-
-### ⭐ Repository Metrics (Atividade no GitHub)
-
-*As métricas abaixo refletem exclusivamente o engajamento e a atividade do repositório de código aberto no GitHub, e não a audiência do website.*
-
-<p align="center">
-  <img src="https://img.shields.io/github/stars/enps2015/crema-coffee-web?style=flat&logo=github&label=Stars" alt="GitHub Stars">
-  <img src="https://img.shields.io/github/forks/enps2015/crema-coffee-web?style=flat&logo=github&label=Forks" alt="GitHub Forks">
-  <img src="https://img.shields.io/github/watchers/enps2015/crema-coffee-web?style=flat&logo=github&label=Watchers" alt="GitHub Watchers">
-  <img src="https://img.shields.io/github/issues/enps2015/crema-coffee-web?style=flat&label=Issues" alt="Open Issues">
-  <img src="https://img.shields.io/github/last-commit/enps2015/crema-coffee-web?style=flat&label=Last%20Commit" alt="Last Commit">
-  <img src="https://img.shields.io/github/repo-size/enps2015/crema-coffee-web?style=flat&label=Repo%20Size" alt="Repo Size">
-</p>
-
-> **Website analytics:** O CREMA° utiliza GoatCounter como ferramenta de analytics orientada à privacidade (sem cookies, sem identificadores pessoais e em conformidade com LGPD/GDPR). Métricas detalhadas de telemetria permanecem estritamente no painel administrativo privado do projeto.
-
----
-
 ## 🤖 IA no processo de desenvolvimento
 
 O CREMA° foi idealizado, desenhado e arquitetado por **Eric Pimentel**, utilizando ferramentas de Inteligência Artificial como parceiras de engenharia de software ao longo de todo o ciclo de desenvolvimento:
