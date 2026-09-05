@@ -149,18 +149,6 @@ O projeto foi projetado para carregamento instantâneo e eficiência energética
 
 ---
 
-## 🌍 CREMA° Audience Analytics
-
-<p align="center">
-  <a href="https://enps2015.github.io/crema-coffee-web/">
-    <img src="assets/analytics/crema-audience.svg" alt="CREMA° Audience Analytics Dashboard" width="100%">
-  </a>
-</p>
-
-> **Observabilidade pública e privacidade estrita:** Instantâneo analítico gerado automaticamente via GitHub Actions a partir da API oficial do GoatCounter (sem cookies, sem rastreamento de dados pessoais, em conformidade com LGPD/GDPR). Métricas granulares de telemetria permanecem no painel administrativo privado do idealizador.
-
----
-
 ## 📊 Project & Engineering Metrics
 
 ### 🧬 Engineering Metrics (Verificáveis no Código-Fonte)
@@ -203,7 +191,7 @@ O projeto foi projetado para carregamento instantâneo e eficiência energética
   <img src="https://img.shields.io/github/repo-size/enps2015/crema-coffee-web?style=flat&label=Repo%20Size" alt="Repo Size">
 </p>
 
-*Distinção operacional: Os dados analíticos detalhados de audiência permanecem privados no GoatCounter, enquanto as métricas agregadas e a tendência temporal são expostas publicamente no dashboard [CREMA° Audience Analytics](#-crema-audience-analytics).*
+> **Website analytics:** O CREMA° utiliza GoatCounter como ferramenta de analytics orientada à privacidade (sem cookies, sem identificadores pessoais e em conformidade com LGPD/GDPR). Métricas detalhadas de telemetria permanecem estritamente no painel administrativo privado do projeto.
 
 ---
 
