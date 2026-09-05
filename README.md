@@ -149,23 +149,15 @@ O projeto foi projetado para carregamento instantâneo e eficiência energética
 
 ---
 
-## 🌍 Website Reach
-
-### 👁️ CREMA° Website Views
+## 🌍 CREMA° Audience Analytics
 
 <p align="center">
   <a href="https://enps2015.github.io/crema-coffee-web/">
-    <img src="https://ericpimentel.goatcounter.com/counter/TOTAL.svg" alt="CREMA° Website Views (GoatCounter)">
+    <img src="assets/analytics/crema-audience.svg" alt="CREMA° Audience Analytics Dashboard" width="100%">
   </a>
-  <br>
-  <em>Contador público acumulado de visualizações do website · Alimentado por GoatCounter</em>
 </p>
 
-> [!NOTE]
-> **Sobre esta métrica de audiência:**
-> - **O que representa:** Contagem pública acumulada de visualizações de página (*pageviews*) do site oficial [CREMA°](https://enps2015.github.io/crema-coffee-web/), sem utilização de cookies ou rastreamento invasivo (em conformidade com LGPD/GDPR).
-> - **Latência de cache:** As respostas do contador público do GoatCounter utilizam cache com renovação periódica (aproximadamente a cada 4 horas); variações recentes podem levar esse intervalo para refletir na imagem do contador.
-> - **Privacidade preservada:** Métricas analíticas detalhadas (distribuição geográfica, dispositivos, sistemas operacionais, referrers e navegação interna) permanecem estritamente privadas no dashboard administrativo do idealizador do projeto.
+> **Observabilidade pública e privacidade estrita:** Instantâneo analítico gerado automaticamente via GitHub Actions a partir da API oficial do GoatCounter (sem cookies, sem rastreamento de dados pessoais, em conformidade com LGPD/GDPR). Métricas granulares de telemetria permanecem no painel administrativo privado do idealizador.
 
 ---
 
@@ -211,7 +203,7 @@ O projeto foi projetado para carregamento instantâneo e eficiência energética
   <img src="https://img.shields.io/github/repo-size/enps2015/crema-coffee-web?style=flat&label=Repo%20Size" alt="Repo Size">
 </p>
 
-*Distinção operacional: Os dados analíticos detalhados de audiência permanecem privados no GoatCounter, enquanto o total agregado de visualizações é exposto publicamente na seção [Website Reach](#-website-reach).*
+*Distinção operacional: Os dados analíticos detalhados de audiência permanecem privados no GoatCounter, enquanto as métricas agregadas e a tendência temporal são expostas publicamente no dashboard [CREMA° Audience Analytics](#-crema-audience-analytics).*
 
 ---
 
