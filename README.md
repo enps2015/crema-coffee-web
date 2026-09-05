@@ -149,20 +149,29 @@ O projeto foi projetado para carregamento instantâneo e eficiência energética
 
 ---
 
-## 📊 Project Metrics
+## 🌍 Website Reach
 
-### Métricas do Repositório (GitHub)
+### 👁️ CREMA° Website Views
 
 <p align="center">
-  <img src="https://img.shields.io/github/stars/enps2015/crema-coffee-web?style=flat&logo=github&label=Stars" alt="GitHub Stars">
-  <img src="https://img.shields.io/github/forks/enps2015/crema-coffee-web?style=flat&logo=github&label=Forks" alt="GitHub Forks">
-  <img src="https://img.shields.io/github/watchers/enps2015/crema-coffee-web?style=flat&logo=github&label=Watchers" alt="GitHub Watchers">
-  <img src="https://img.shields.io/github/issues/enps2015/crema-coffee-web?style=flat&label=Issues" alt="Open Issues">
-  <img src="https://img.shields.io/github/last-commit/enps2015/crema-coffee-web?style=flat&label=Last%20Commit" alt="Last Commit">
-  <img src="https://img.shields.io/github/repo-size/enps2015/crema-coffee-web?style=flat&label=Repo%20Size" alt="Repo Size">
+  <a href="https://enps2015.github.io/crema-coffee-web/">
+    <img src="https://ericpimentel.goatcounter.com/counter/TOTAL.svg" alt="CREMA° Website Views (GoatCounter)">
+  </a>
+  <br>
+  <em>Contador público acumulado de visualizações do website · Alimentado por GoatCounter</em>
 </p>
 
-### Métricas Técnicas Verificáveis
+> [!NOTE]
+> **Sobre esta métrica de audiência:**
+> - **O que representa:** Contagem pública acumulada de visualizações de página (*pageviews*) do site oficial [CREMA°](https://enps2015.github.io/crema-coffee-web/), sem utilização de cookies ou rastreamento invasivo (em conformidade com LGPD/GDPR).
+> - **Latência de cache:** As respostas do contador público do GoatCounter utilizam cache com renovação periódica (aproximadamente a cada 4 horas); variações recentes podem levar esse intervalo para refletir na imagem do contador.
+> - **Privacidade preservada:** Métricas analíticas detalhadas (distribuição geográfica, dispositivos, sistemas operacionais, referrers e navegação interna) permanecem estritamente privadas no dashboard administrativo do idealizador do projeto.
+
+---
+
+## 📊 Project & Engineering Metrics
+
+### 🧬 Engineering Metrics (Verificáveis no Código-Fonte)
 
 | Indicador Técnico | Métrica Real | Fonte no Repositório |
 | :--- | :---: | :--- |
@@ -187,7 +196,22 @@ O projeto foi projetado para carregamento instantâneo e eficiência energética
 | **Contorno Somático** (`body_ref.glb`) | 0,20 MB | 0,21 MB | — |
 | **Total do Atlas Anatômico** | **31,22 MB** | **4,77 MB** | **-84,7%** |
 
-*Observação sobre analytics: O projeto utiliza instrumentação privada via GoatCounter, preservando a privacidade integral dos visitantes sem exibição de contadores públicos.*
+---
+
+### ⭐ Repository Metrics (Atividade no GitHub)
+
+*As métricas abaixo refletem exclusivamente o engajamento e a atividade do repositório de código aberto no GitHub, e não a audiência do website.*
+
+<p align="center">
+  <img src="https://img.shields.io/github/stars/enps2015/crema-coffee-web?style=flat&logo=github&label=Stars" alt="GitHub Stars">
+  <img src="https://img.shields.io/github/forks/enps2015/crema-coffee-web?style=flat&logo=github&label=Forks" alt="GitHub Forks">
+  <img src="https://img.shields.io/github/watchers/enps2015/crema-coffee-web?style=flat&logo=github&label=Watchers" alt="GitHub Watchers">
+  <img src="https://img.shields.io/github/issues/enps2015/crema-coffee-web?style=flat&label=Issues" alt="Open Issues">
+  <img src="https://img.shields.io/github/last-commit/enps2015/crema-coffee-web?style=flat&label=Last%20Commit" alt="Last Commit">
+  <img src="https://img.shields.io/github/repo-size/enps2015/crema-coffee-web?style=flat&label=Repo%20Size" alt="Repo Size">
+</p>
+
+*Distinção operacional: Os dados analíticos detalhados de audiência permanecem privados no GoatCounter, enquanto o total agregado de visualizações é exposto publicamente na seção [Website Reach](#-website-reach).*
 
 ---
 
